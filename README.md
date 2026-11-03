@@ -32,3 +32,8 @@ O modo `--demo` funciona sem LIVE real. A integração real depende de validaç�
 ## Regras importantes
 
 A Rosquinha retira 20 pontos do time adversário, sem prejudicar o próprio time. Os limites de combo e de pontuação foram revisados na V12.9.4.1.
+
+
+## Estado desta publicação
+
+O motor `batalha.js`, os instaladores, testes, regras de economia e arquivos de manifesto foram enviados para o repositório. **Os PNGs da pasta `livepulse_visual/` e os demais recursos gráficos binários ainda não foram publicados neste commit**. Portanto, esta cópia não é uma distribuição instalável completa até que esses recursos sejam enviados. O ZIP completo V12.9.4.1 permanece como a distribuição de instalação. Não publique arquivos locais de configuração, chaves ou runtime.
