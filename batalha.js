@@ -10,6 +10,41 @@ const names=['Bloco','Rosa','Coração','Rosquinha','Laço','Cachorrinho','Dinhe
 const namesB=['Bloco','TikTok','Cookies','Rosquinha','Coroa','Corações Azul','Coroa Real'];
 const effects=[1,10,30,-20,25,50,100,100];
 const economyCore=require('./economia_v1294');
+const levelDesign=(()=>{
+
+/** LivePulse level design: non-commercial encounter rules, deterministic and testable.
+ * The gift catalog, currencies and purchase/conversion settings are intentionally untouched.
+ */
+const RULES=Object.freeze({
+  openingMs:25000,telegraphMs:4000,towerRebuildMs:12000,
+  betweenRoundsMs:5500,championPauseMs:7800,
+  maxAutomaticBossesPerRound:1,bossRewardRatio:0.08,
+  focusDamage:10,focusCooldownMs:30000,shieldCooldownMs:45000
+});
+function teamName(team){return team==='creator'?'CRIADOR':team==='chat'?'CHAT':'—'}
+function chooseTarget(damage,towers){
+  const ready=['chat','creator'].filter(t=>towers&&towers[t]&&Number(towers[t].hp)>0);
+  if(!ready.length)return null;
+  if(ready.length===1)return ready[0];
+  return (Number(damage&&damage.chat)||0)>=(Number(damage&&damage.creator)||0)?'chat':'creator';
+}
+function bossReward(goal,maxEventPoints){
+  const g=Math.max(20,Number(goal)||500);
+  return Math.min(Math.max(1,Math.round(g*RULES.bossRewardRatio)),Math.max(1,Number(maxEventPoints)||150));
+}
+function pace({phase,paused,remaining,duration,boss,roundSummoned,round,nextBossAutoAt,now=Date.now()}){
+  if(paused)return 'pausado';
+  if(phase==='champion'||phase==='ended')return 'resultado';
+  if(phase!=='playing')return 'aguardando';
+  if(remaining<=Math.min(15,Math.ceil(duration*.1)))return 'climax';
+  if(boss&&boss.active)return 'chefao';
+  if(roundSummoned===round)return 'recuperacao';
+  if(nextBossAutoAt&&now<nextBossAutoAt)return 'confronto';
+  return 'confronto';
+}
+return {RULES,teamName,chooseTarget,bossReward,pace};
+
+})();
 const defaults={maxEventPoints:150,maxCombinedMultiplier:3,goal:500,duration:180,start:120,chatVote:1,creatorVote:1,followPoints:2,botSpeed:1400,sound:true,bestOf:3,chatNames:['Bloco','Rosa','Coração','Rosquinha','Laço','Cachorrinho','Dinheiro'],creatorNames:['Bloco','TikTok','Cookies','Rosquinha','Coroa','Corações Azul','Coroa Real'],chatPoints:[1,10,30,-20,25,50,100],creatorPoints:[1,10,30,-20,25,50,100]};
 const configPath=path.join(__dirname,'batalha_config.json');let cfg={...defaults};try{cfg={...cfg,...JSON.parse(fs.readFileSync(configPath))}}catch(_){}
 // Rosquinha always targets the opponent: -20 on the rival scoreboard; never deduct from sender.
@@ -78,21 +113,21 @@ function bossStage(){if(!combat.active)combatStart();else throw Error('Fases ava
 
 /* V5.7: combate cooperativo real, independente da pontuação competitiva */
 const combatFile=path.join(__dirname,'batalha_combate_v57.json');
-const combat={active:false,stage:0,hp:0,maxHp:0,towers:{chat:{hp:300,maxHp:300,shield:0},creator:{hp:300,maxHp:300,shield:0}},damage:{chat:0,creator:0},supporters:{},kills:0,history:[],nextAttack:0,started:0,endedAt:0};
+const combat={active:false,stage:0,hp:0,maxHp:0,towers:{chat:{hp:300,maxHp:300,shield:0},creator:{hp:300,maxHp:300,shield:0}},damage:{chat:0,creator:0},supporters:{},kills:0,history:[],nextAttack:0,started:0,endedAt:0,roundSummoned:0,target:null};
 try{const saved=JSON.parse(fs.readFileSync(combatFile,'utf8'));if(saved&&typeof saved==='object'){Object.assign(combat,saved);combat.towers={...combat.towers,...saved.towers}}}catch(_){}
 function combatSave(){try{const t=combatFile+'.tmp';fs.writeFileSync(t,JSON.stringify(combat));fs.renameSync(t,combatFile)}catch(e){console.error('Falha ao salvar combate:',e.message)}}
-function combatSnapshot(){return {active:combat.active,stage:combat.stage,hp:combat.hp,maxHp:combat.maxHp,towers:combat.towers,damage:combat.damage,kills:combat.kills,top:Object.entries(combat.supporters).sort((a,b)=>b[1]-a[1]).slice(0,5),nextAttack:combat.nextAttack,nextBossAutoAt:combat.active?0:nextBossAutoAt,endedAt:combat.endedAt,history:combat.history.slice(0,5)}}
-let nextBossAutoAt=Date.now()+30000;
-function combatStart(){if(combat.active)throw Error('Chefão já está ativo');if(game.phase!=='playing')throw Error('Inicie uma rodada para invocar o chefão');nextBossAutoAt=0;combat.active=true;combat.stage=1;combat.maxHp=450;combat.hp=450;combat.damage={chat:0,creator:0};combat.supporters={};combat.towers={chat:{hp:300,maxHp:300,shield:0},creator:{hp:300,maxHp:300,shield:0}};combat.nextAttack=Date.now()+10000;combat.started=Date.now();combat.endedAt=0;advanced.bossStage=1;runtime.boss=null;emit({combatStart:combatSnapshot(),combat:combatSnapshot(),bossStage:{stage:1}});combatSave()}
-function combatStop(){nextBossAutoAt=Date.now()+30000;combat.active=false;combat.endedAt=Date.now();advanced.bossStage=0;emit({combat:combatSnapshot(),bossStage:{stage:0}});combatSave()}
+function combatSnapshot(){return {active:combat.active,stage:combat.stage,hp:combat.hp,maxHp:combat.maxHp,towers:combat.towers,damage:combat.damage,kills:combat.kills,top:Object.entries(combat.supporters).sort((a,b)=>b[1]-a[1]).slice(0,5),nextAttack:combat.nextAttack,nextBossAutoAt:combat.active||combat.roundSummoned===game.round?0:nextBossAutoAt,endedAt:combat.endedAt,history:combat.history.slice(0,5),target:combat.target||null,roundSummoned:combat.roundSummoned||0}}
+let nextBossAutoAt=Date.now()+levelDesign.RULES.openingMs;
+function combatStart(){if(combat.active)throw Error('Chefão já está ativo');if(game.phase!=='playing')throw Error('Inicie uma rodada para invocar o chefão');nextBossAutoAt=0;combat.active=true;combat.stage=1;combat.maxHp=450;combat.hp=450;combat.damage={chat:0,creator:0};combat.supporters={};combat.towers={chat:{hp:300,maxHp:300,shield:0,downUntil:0},creator:{hp:300,maxHp:300,shield:0,downUntil:0}};combat.nextAttack=Date.now()+10000;combat.target=null;combat.roundSummoned=game.round;combat.started=Date.now();combat.endedAt=0;advanced.bossStage=1;runtime.boss=null;emit({combatStart:combatSnapshot(),combat:combatSnapshot(),bossStage:{stage:1}});combatSave()}
+function combatStop(){nextBossAutoAt=0;combat.active=false;combat.target=null;combat.endedAt=Date.now();advanced.bossStage=0;emit({combat:combatSnapshot(),bossStage:{stage:0}});combatSave()}
 function combatHit(user,team,pts){if(!combat.active||game.phase!=='playing'||runtime.paused||!['chat','creator'].includes(team))return;
  const dmg=Math.max(0,Math.min(1500,Math.round(Number(pts)||0)));if(!dmg)return;
  combat.hp=Math.max(0,combat.hp-dmg);combat.damage[team]+=dmg;if(Object.prototype.hasOwnProperty.call(combat.supporters,user)||Object.keys(combat.supporters).length<500)combat.supporters[user]=(combat.supporters[user]||0)+dmg;
  emit({combatHit:{team,user,damage:dmg},combat:combatSnapshot()});
- if(combat.hp===0){if(combat.stage<3){combat.stage++;combat.maxHp=combat.stage===2?950:1200;combat.hp=combat.maxHp;advanced.bossStage=combat.stage;combat.nextAttack=Date.now()+7500;emit({combatPhase:{stage:combat.stage},combat:combatSnapshot(),bossStage:{stage:combat.stage}})}
- else{combat.active=false;nextBossAutoAt=Date.now()+30000;combat.endedAt=Date.now();combat.kills++;advanced.bossStage=0;
+ if(combat.hp===0){if(combat.stage<3){combat.stage++;combat.maxHp=combat.stage===2?950:1200;combat.hp=combat.maxHp;advanced.bossStage=combat.stage;combat.nextAttack=Date.now()+7500;combat.target=null;emit({combatPhase:{stage:combat.stage},combat:combatSnapshot(),bossStage:{stage:combat.stage}})}
+ else{combat.active=false;nextBossAutoAt=0;combat.target=null;combat.endedAt=Date.now();combat.kills++;advanced.bossStage=0;
  const winner=combat.damage.chat>=combat.damage.creator?'chat':'creator';
- const best=Object.entries(combat.supporters).sort((a,b)=>b[1]-a[1])[0];const reward=economyCore.boundPoints(Math.min(100,Math.round(cfg.goal*.15)),cfg);
+ const best=Object.entries(combat.supporters).sort((a,b)=>b[1]-a[1])[0];const reward=levelDesign.bossReward(cfg.goal,cfg.maxEventPoints);
  game[winner]+=reward;
  if(best){const p=userProfile(best[0]);p.xp+=100;if(!p.medals.includes('Caçador de Chefões'))p.medals.push('Caçador de Chefões');emit({achievement:{user:best[0],medal:'Caçador de Chefões',title:profileTitle(p)}})}
  combat.history.unshift({ts:Date.now(),winner,best:best?.[0]||null,damage:combat.damage});combat.history=combat.history.slice(0,25);
@@ -100,21 +135,43 @@ function combatHit(user,team,pts){if(!combat.active||game.phase!=='playing'||run
  }
  combatSave();
 }
+function combatTarget(){return levelDesign.chooseTarget(combat.damage,combat.towers)}
 function combatAttack(){if(!combat.active||runtime.paused||game.phase!=='playing'||Date.now()<combat.nextAttack)return;
- combat.nextAttack=Date.now()+Math.max(5000,11000-combat.stage*1200);
- const team=combat.damage.chat>=combat.damage.creator?'chat':'creator';
+ const now=Date.now();const team=combat.target&&combat.towers[combat.target]&&combat.towers[combat.target].hp>0?combat.target:combatTarget();
+ combat.target=null;combat.nextAttack=now+Math.max(5000,11000-combat.stage*1200);
+ if(!team){combatSave();return}
  const tower=combat.towers[team];const raw=15+combat.stage*12;
  const absorbed=Math.min(tower.shield,raw);tower.shield-=absorbed;tower.hp=Math.max(0,tower.hp-(raw-absorbed));
- emit({combatAttack:{team,stage:combat.stage,damage:raw-absorbed,blocked:absorbed,ts:Date.now()},combat:combatSnapshot()});
- if(tower.hp===0){tower.hp=tower.maxHp;tower.shield=0;combat.hp=Math.min(combat.maxHp,combat.hp+Math.round(combat.maxHp*.12));emit({combatTowerDown:{team},combat:combatSnapshot()})}
+ emit({combatAttack:{team,stage:combat.stage,damage:raw-absorbed,blocked:absorbed,ts:now},combat:combatSnapshot()});
+ if(tower.hp===0&&!tower.downUntil){
+  tower.downUntil=now+levelDesign.RULES.towerRebuildMs;tower.shield=0;
+  combat.hp=Math.min(combat.maxHp,combat.hp+Math.round(combat.maxHp*.12));
+  emit({combatTowerDown:{team,downUntil:tower.downUntil},combat:combatSnapshot()});
+ }
  combatSave();
 }
+function combatTick(){
+ if(!combat.active||runtime.paused||game.phase!=='playing')return;
+ const now=Date.now();
+ for(const team of ['chat','creator']){
+  const tower=combat.towers[team];if(!tower)continue;
+  if(tower.hp===0&&tower.downUntil&&now>=tower.downUntil){
+   tower.hp=tower.maxHp;tower.shield=0;tower.downUntil=0;
+   emit({combatTowerRestored:{team,ts:now},combat:combatSnapshot()});combatSave();
+  }
+ }
+ if(combat.nextAttack>now&&combat.nextAttack-now<=levelDesign.RULES.telegraphMs&&!combat.target){
+  combat.target=combatTarget();
+  if(combat.target)emit({combatTelegraph:{team:combat.target,stage:combat.stage,at:combat.nextAttack,seconds:Math.ceil((combat.nextAttack-now)/1000)},combat:combatSnapshot()});
+ }
+ combatAttack();
+}
 function combatShield(team){if(!combat.active)throw Error('Chefão não está ativo');const tower=combat.towers[team];tower.shield=Math.min(180,tower.shield+65);emit({combatShield:{team,value:tower.shield,ts:Date.now()},combat:combatSnapshot()});combatSave()}
-setInterval(combatAttack,1000);setInterval(combatSave,12000);
-// Reinvocacao automatica: 30 segundos apos o fim do chefao, sem sobrepor batalhas.
-setInterval(()=>{if(game.phase!=='playing'||runtime.paused||combat.active)return;
- if(!nextBossAutoAt)nextBossAutoAt=Date.now()+30000;
- if(Date.now()>=nextBossAutoAt){try{combatStart()}catch(e){console.error('Auto boss:',e.message);nextBossAutoAt=Date.now()+30000}}
+setInterval(combatTick,1000);setInterval(combatSave,12000);
+// Um chefão automático por rodada. Invocação manual permanece disponível no painel.
+setInterval(()=>{if(game.phase!=='playing'||runtime.paused||combat.active||combat.roundSummoned===game.round)return;
+ if(!nextBossAutoAt)nextBossAutoAt=Date.now()+levelDesign.RULES.openingMs;
+ if(Date.now()>=nextBossAutoAt){try{combatStart()}catch(e){console.error('Auto boss:',e.message);nextBossAutoAt=Date.now()+levelDesign.RULES.openingMs}}
 },1000);
 
 const retentionFile=path.join(__dirname,'batalha_retencao_v53.json');
@@ -137,7 +194,7 @@ try{const saved=JSON.parse(fs.readFileSync(runtimeFile,'utf8'));if(saved.game&&s
 function log(kind,detail){const e={ts:Date.now(),kind,detail:String(detail).slice(0,200)};runtime.logs.unshift(e);runtime.logs=runtime.logs.slice(0,120);console.log('[V4.9]',kind,e.detail)}
 function saveRuntime(){saveStats();saveSeen();saveCommunity();saveAdvanced();combatSave();try{const t=retentionFile+'.tmp';fs.writeFileSync(t,JSON.stringify(retention));fs.renameSync(t,retentionFile)}catch(e){console.error('Falha histórico:',e.message)}try{const t=runtimeFile+'.tmp';fs.writeFileSync(t,JSON.stringify({game,runtime:{paused:runtime.paused,roundSupport:runtime.roundSupport,champSupport:runtime.champSupport,logs:runtime.logs}}));fs.renameSync(t,runtimeFile)}catch(e){console.error('Falha backup de estado:',e.message)}}
 setInterval(saveRuntime,10000);process.on('SIGINT',()=>{saveRuntime();process.exit(0)});process.on('SIGTERM',()=>{saveRuntime();process.exit(0)});
-function publicState(){return {community:{top:topCommunity(),poll:community.poll,season:community.season},advanced:{season:advanced.season,bracket:advanced.bracket.slice(-8),bossStage:advanced.bossStage,raffleEntries:advanced.raffle.entries.length,raffleWinners:advanced.raffle.winners.slice(0,5),theme:advanced.theme,visualMode:advanced.visualMode||'economico',voice:advanced.voice,giftImages:advanced.giftImages},combat:combatSnapshot(),retention,overtime:overtimeActive,paused:runtime.paused,boss:runtime.boss,mission:runtime.mission,surprise:runtime.surprise,combo:runtime.combo,roundSupport:runtime.roundSupport,champSupport:runtime.champSupport,logs:runtime.logs.slice(0,25),connectStatus:runtime.connectStatus,liveDiagnostics:runtime.liveDiagnostics||null,stats,goals,economy:economy.snapshot(cfg)}}
+function publicState(){return {levelDesign:{phase:levelDesign.pace({phase:game.phase,paused:runtime.paused,remaining:game.remaining,duration:cfg.duration,boss:combat,roundSummoned:combat.roundSummoned,round:game.round,nextBossAutoAt}),nextBossAutoAt:combat.roundSummoned===game.round?0:nextBossAutoAt,maxAutomaticBossesPerRound:1,telegraphMs:levelDesign.RULES.telegraphMs,towerRebuildMs:levelDesign.RULES.towerRebuildMs},community:{top:topCommunity(),poll:community.poll,season:community.season},advanced:{season:advanced.season,bracket:advanced.bracket.slice(-8),bossStage:advanced.bossStage,raffleEntries:advanced.raffle.entries.length,raffleWinners:advanced.raffle.winners.slice(0,5),theme:advanced.theme,visualMode:advanced.visualMode||'economico',voice:advanced.voice,giftImages:advanced.giftImages},combat:combatSnapshot(),retention,overtime:overtimeActive,paused:runtime.paused,boss:runtime.boss,mission:runtime.mission,surprise:runtime.surprise,combo:runtime.combo,roundSupport:runtime.roundSupport,champSupport:runtime.champSupport,logs:runtime.logs.slice(0,25),connectStatus:runtime.connectStatus,liveDiagnostics:runtime.liveDiagnostics||null,stats,goals,economy:economy.snapshot(cfg)}}
 function special(type,team){const now=Date.now();if(type==='boss'){runtime.boss={hp:300,until:now+45000,chat:0,creator:0};log('boss','Chefão da arena apareceu!')}
 else if(type==='mission'){runtime.mission={team:team||'chat',target:120,progress:0,until:now+45000,reward:economyCore.boundPoints(Math.min(80,Math.round(cfg.goal*.12)),cfg)};log('missao','Missão para '+runtime.mission.team)}
 else if(type==='surprise'){runtime.surprise={multiplier:2,until:now+30000};log('surpresa','Pontuação em dobro por 30 segundos')}
@@ -150,7 +207,7 @@ if(runtime.mission&&now<runtime.mission.until&&team===runtime.mission.team&&pts>
 return {pts,mult,count}}
 
 function emit(e){const msg='data: '+JSON.stringify(e)+'\n\n';for(const c of clients){try{c.write(msg)}catch(_){clients.delete(c)}}}
-function reset(){if(combat.active)combatStop();nextBossAutoAt=Date.now()+30000;overtimeActive=false;overtimeStarted=0;for(const k of ['roundLikes','roundFollowers','roundShares','roundGifts'])stats[k]=0;duelEnd();runtime.roundSupport={};runtime.combo={};runtime.boss=null;runtime.mission=null;runtime.surprise=null;game.chat=cfg.start;game.creator=cfg.start;game.remaining=cfg.duration;game.phase='playing';game.round++}
+function reset(){if(combat.active)combatStop();nextBossAutoAt=Date.now()+levelDesign.RULES.openingMs;overtimeActive=false;overtimeStarted=0;for(const k of ['roundLikes','roundFollowers','roundShares','roundGifts'])stats[k]=0;duelEnd();runtime.roundSupport={};runtime.combo={};runtime.boss=null;runtime.mission=null;runtime.surprise=null;game.chat=cfg.start;game.creator=cfg.start;game.remaining=cfg.duration;game.phase='playing';game.round++}
 function finish(reason){
  if(game.phase!=='playing')return;
  const delta=Math.abs(game.chat-game.creator);
@@ -175,7 +232,7 @@ function finish(reason){
  emit({game,roundEnd:result,runtime:publicState()});
  if(finishTimer)clearTimeout(finishTimer);
  const champion=!!game.champion;
- finishTimer=setTimeout(()=>{finishTimer=null;if(champion){runtime.champSupport={};game.championship++;game.winsChat=0;game.winsCreator=0;game.round=0;game.champion=null;}reset();emit({game,roundStart:game.round,runtime:publicState()})},champion?6500:3500);
+ finishTimer=setTimeout(()=>{finishTimer=null;if(champion){runtime.champSupport={};game.championship++;game.winsChat=0;game.winsCreator=0;game.round=0;game.champion=null;}reset();emit({game,roundStart:game.round,runtime:publicState()})},champion?levelDesign.RULES.championPauseMs:levelDesign.RULES.betweenRoundsMs);
  saveRuntime();
 }
 function event(type,user,message,amount=1,team=null,idx=null){
@@ -187,10 +244,17 @@ function event(type,user,message,amount=1,team=null,idx=null){
   const m=message.toLowerCase().trim();
   if(/(^|\s)!chat(\s|$)/.test(m)){team='chat';economy.assign(user,team);if(economy.allow('vote',user,1500))pts=cfg.chatVote}
   else if(/(^|\s)!(criador|azul)(\s|$)/.test(m)){team='creator';economy.assign(user,team);if(economy.allow('vote',user,1500))pts=cfg.creatorVote}
-  else if(m==='!ajuda')emit({help:{user,text:'Comandos: !chat, !azul, !voto chefao, !voto missao, !perfil'}});
+  else if(m==='!ajuda')emit({help:{user,text:'Comandos: !chat, !criador, !escudo, !foco, !voto chefao, !voto missao, !perfil'}});
   else if(m.startsWith('!voto ')&&economy.allow('poll',user,2000))pollVote(user,m.slice(6).trim());
   else if(m==='!sorteio'&&economy.allow('raffle',user,3000))raffleEnter(user);
   else if(m==='!perfil'&&economy.allow('profile',user,3000)){const p=userProfile(user);emit({profile:{user,xp:p.xp,title:profileTitle(p)}})}
+  else if((m==='!escudo'||m==='!foco')&&activeRound&&combat.active){
+   const chosen=economy.teamOf(user);
+   if(chosen&&economy.allow('tactic-'+m,user,m==='!escudo'?levelDesign.RULES.shieldCooldownMs:levelDesign.RULES.focusCooldownMs)){
+    if(m==='!escudo'){combatShield(chosen);emit({tactical:{user,team:chosen,action:'escudo'}})}
+    else {combatHit(user,chosen,levelDesign.RULES.focusDamage);emit({tactical:{user,team:chosen,action:'foco'}})}
+   }
+  }
  }
  if(type==='gift'&&['chat','creator'].includes(team)&&Number.isInteger(idx)&&idx>=0&&idx<7){
   const quantity=Math.max(1,Math.min(100,Math.trunc(Number(amount)||1)));
@@ -1633,6 +1697,69 @@ html body.overlay.v1292-tab-hidden .arena .field #v1292WingRig img{animation-pla
 html body.overlay.visual-enhanced.v60-cinematografico .arena .field #bossSprite {filter:drop-shadow(0 2px 8px rgba(255,57,126,.48)) drop-shadow(0 0 5px rgba(255,191,93,.34));}
 html body.overlay.visual-enhanced.v60-cinematografico .arena .field .towers .tower {filter:drop-shadow(0 5px 6px rgba(0,0,0,.48));}
 @media(prefers-reduced-motion:reduce){html body.overlay .arena .field #bossSprite,html body.overlay .arena .field .towers .tower{filter:none!important}}
+
+/* LIVEPULSE LEVEL DESIGN: authoritative mobile layout, no destructive legacy removal.
+   900x1450 artwork retains native aspect ratio and never uses 100% 100% stretching. */
+html body.overlay .arena .field {
+ background-color:#100e28!important;
+ background-image:linear-gradient(90deg,rgba(84,8,28,.25),rgba(3,8,34,.05) 49%,rgba(0,58,109,.25)),url('/visual_assets/arena_scene.png')!important;
+ background-size:100% 100%,contain!important;
+ background-position:center,center!important;background-repeat:no-repeat,no-repeat!important;
+ grid-template-columns:clamp(53px,17vw,82px) minmax(0,1fr) clamp(53px,17vw,82px)!important;
+ isolation:isolate!important;overflow:hidden!important;
+}
+/* Informational surfaces outrank weather, lightning, spells and aura layers. */
+html body.overlay .arena .v71brand,html body.overlay .arena .header,html body.overlay .arena .meta,
+html body.overlay .arena .ld-guide{position:relative;z-index:80!important;isolation:isolate}
+html body.overlay .arena .field .v71scenery,html body.overlay .arena .field #v127depth,
+html body.overlay .arena .field #v119lighting,html body.overlay .arena .field #v119portal,
+html body.overlay .arena .field .v10-aura{z-index:0!important;pointer-events:none!important}
+html body.overlay .arena .field #v127flash,html body.overlay .arena .field .v60fx,
+html body.overlay .arena .field #v59Fx,html body.overlay .arena .field #v1292AttackFx{
+ z-index:9!important;pointer-events:none!important}
+html body.overlay .arena .field .towers{z-index:22!important;position:relative!important}
+html body.overlay .arena .field #bossMonster{z-index:27!important;max-width:72%!important;pointer-events:none!important}
+html body.overlay .arena .field #gchat,html body.overlay .arena .field #gcreator{
+ position:relative!important;z-index:40!important;min-width:0!important;overflow:hidden!important}
+html body.overlay .arena .field .v52gift{z-index:43!important}
+html body.overlay .arena .header .score{font-size:clamp(27px,8.5vw,42px)!important;line-height:1!important;white-space:nowrap!important}
+html body.overlay .arena .meta{font-weight:900!important;font-size:clamp(11px,3.25vw,16px)!important;
+ background:#0d1029dc!important;padding:3px 2px!important;text-shadow:0 1px 3px #000!important}
+html body.overlay .arena .field .v57towerhp,html body.overlay .arena .field #v57hp,
+html body.overlay .arena .field #v58bossNext{z-index:54!important;text-shadow:0 2px 5px #000!important;
+ background:rgba(5,7,18,.88)!important;border-radius:4px!important;padding:2px 3px!important;
+ font-weight:900!important;color:#fff!important;}
+html body.overlay .arena .field #v58bossNext{color:#ffe288!important}
+html body.overlay .arena .ld-guide{display:grid!important;grid-template-columns:1fr auto;align-items:center;
+ gap:0 5px;margin:0!important;padding:4px 6px!important;color:#fff!important;background:#11182fea!important;
+ border-bottom:1px solid #ecd59b75!important;min-height:32px!important;font-size:clamp(9px,2.8vw,12px)!important}
+html body.overlay .arena .ld-guide #ldLeader{font-weight:1000!important;white-space:nowrap!important}
+html body.overlay .arena .ld-guide #ldProgress{font-variant-numeric:tabular-nums!important;font-weight:900!important;
+ text-align:right!important;white-space:nowrap!important}
+html body.overlay .arena .ld-guide #ldHelp{grid-column:1/-1!important;display:block!important;font-weight:700!important;
+ color:#ffe4a2!important;white-space:normal!important;line-height:1.25!important}
+html body.overlay .arena .field .ld-encounter{position:absolute!important;z-index:45!important;
+ left:19%!important;right:19%!important;top:40%!important;max-height:8%!important;overflow:hidden!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;
+ background:rgba(5,8,26,.89)!important;border:1px solid #e8cf7c8c!important;border-radius:6px!important;
+ padding:2px 4px!important;line-height:1.15!important;font-size:clamp(9px,2.7vw,12px)!important;
+ font-weight:950!important;color:#fff!important;text-shadow:0 1px 3px #000!important;pointer-events:none!important}
+html body.overlay .arena .field .ld-encounter.ld-warning{color:#ffe8a0!important;
+ background:rgba(95,18,27,.94)!important;border-color:#ffcc62!important}
+html body.overlay .arena .field .tower.ld-targeted{outline:2px solid #ffdd73!important;outline-offset:2px!important;
+ border-radius:8px!important;filter:drop-shadow(0 0 11px #ffe075)!important}
+html body.overlay .arena .field .tower.ld-destroyed{opacity:.55!important;filter:grayscale(.6)!important}
+html body.overlay .arena .field .tower.ld-damaged{filter:drop-shadow(0 0 8px #ff584e)!important}
+html body.overlay .arena .field.ld-phase3::before{filter:hue-rotate(20deg) saturate(1.1)!important}
+@media(max-width:380px){
+ html body.overlay .arena .field{grid-template-columns:54px minmax(0,1fr) 54px!important}
+ html body.overlay .arena .ld-guide{grid-template-columns:1fr!important}
+ html body.overlay .arena .ld-guide #ldProgress{text-align:left!important}
+ html body.overlay .arena .field .ld-encounter{left:17%!important;right:17%!important;top:39%!important}
+}
+@media(max-height:690px){html body.overlay .arena .ld-guide{padding:2px 5px!important;min-height:26px!important}
+ html body.overlay .arena .field .ld-encounter{font-size:9px!important;max-height:9%!important}}
+@media(prefers-reduced-motion:reduce){html body.overlay .arena .field .tower.ld-targeted{animation:none!important}}
 </style>
 <section id="v124dashboard" class="v124-console" hidden aria-label="Central administrativa LivePulse">
  <header class="v124-top"><div><h1>♛ LivePulse • Central de Comando</h1><p>V12.9.4 · Economia Segura e Batalha Interativa</p></div><div class="v124-links"><a href="/overlay?v=1294" target="_blank" rel="noopener">📺 Arena</a><a href="/">⚙️ Painel clássico</a><button id="v124-login" class="v124-primary" type="button">🔐 Desbloquear</button></div></header>
@@ -1645,7 +1772,7 @@ html body.overlay.visual-enhanced.v60-cinematografico .arena .field .towers .tow
  <section class="v124-panel"><details><summary>⚙️ Configurações rápidas (abrir)</summary><p><small>Salvar alterações reinicia a rodada. As demais configurações e os 14 presentes são preservados.</small></p><div class="v124-settings"><label>Meta de pontos<input type="number" id="v124-goal" min="20" max="100000" required></label><label>Duração (segundos)<input type="number" id="v124-duration" min="20" max="3600" required></label><label>Pontos iniciais<input type="number" id="v124-start" min="0" required></label><label>Velocidade bots (ms)<input type="number" id="v124-botSpeed" min="300" max="20000" required></label></div><div class="v124-secondary"><button type="button" id="v124-config-save" class="v124-caution" disabled>💾 Salvar e reiniciar rodada</button><a href="/">Configurações completas no painel clássico</a></div><div id="v124-config-msg" class="v124-msg" role="status"></div></details></section>
  <div class="v124-footer">LivePulse 12.9.4 • Painel restrito ao dispositivo local • Não é necessário iniciar uma LIVE do TikTok para testar.</div>
 </section>
-<div class="arena"><div class="v71brand"><span>♛ LivePulse ♛</span><small>⚔ BATALHA DE INTERAÇÃO • ARENA VIVA ⚔</small></div><div class="header"><div class="side red">CHAT<div class="score" id="chat">120</div><small id="wc">VITÓRIAS 0</small></div><div class="vs">VS</div><div class="side blue">CRIADOR<div class="score" id="creator">120</div><small id="wr">VITÓRIAS 0</small></div></div><div class="meta">🏁 META <span id="goal">500</span> • <span id="clock">03:00</span> • RODADA <span id="round">1</span> <span id="v70next" hidden></span></div><div class="field"><div class="v71scenery" aria-hidden="true"></div><div id="v127depth" aria-hidden="true"></div><div id="v127flash" aria-hidden="true"></div><div id="v119lighting" aria-hidden="true"></div><div id="v119portal" aria-hidden="true"></div><div class="v10-aura" aria-hidden="true"></div><div class="fx" id="fx"></div><div id="v1292AttackFx" aria-hidden="true"></div><div class="v59-fx-layer" id="v59Fx" aria-hidden="true"></div><div class="v60fx" id="v60Fx" aria-hidden="true"></div><div class="boss-monster" id="bossMonster" aria-label="Chefão da arena" hidden><div class="boss-monster-body"><div id="v1292Portal" aria-hidden="true"></div><img id="bossSprite" src="/visual_assets/boss_phase1.png" alt="Monstro chefão" onerror="this.hidden=true;this.nextElementSibling.style.display='block'"><svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monstro com chifres e olhos brilhantes"><path class="boss-horn" d="M32 55 Q8 33 17 5 Q45 17 53 43 M108 43 Q125 12 146 5 Q152 34 128 56" fill="#7255a6" stroke="#1b1135" stroke-width="6"/><path class="boss-face" d="M22 58 Q29 23 80 27 Q133 24 140 63 L134 115 Q81 148 26 113Z" fill="#6b38a4" stroke="#211335" stroke-width="7"/><path d="M37 71 L67 78 L53 88Z M123 71 L93 78 L107 88Z" fill="#ffdf50"/><path d="M51 108 Q81 123 110 108 L98 127 L88 115 L80 128 L69 115 L60 126Z" fill="#140d23" stroke="#2a1238" stroke-width="3"/><circle cx="48" cy="79" r="3" fill="#fff"/><circle cx="112" cy="79" r="3" fill="#fff"/></svg><div id="v1292WingRig" aria-hidden="true"><img id="v1292WingLeft" alt="" decoding="async"><img id="v1292WingRight" alt="" decoding="async"></div></div><div class="boss-monster-title">👹 CHEFÃO <span id="bossMonsterPhase">FASE 1</span></div><div class="boss-monster-health"><span id="bossMonsterHp"></span></div><div class="v57hp" id="v57hp">450 / 450 HP</div><div class="v58boss-next" id="v58bossNext" hidden>⚡ ATAQUE EM 10s</div></div><div class="v52gift chat" id="v52chat"><div class="v52box"><img alt="Presente CHAT"><div class="v52emoji" hidden>🎁</div><div class="v52name"></div><div class="v52user"></div></div></div><div class="v52gift creator" id="v52creator"><div class="v52box"><img alt="Presente CRIADOR"><div class="v52emoji" hidden>🎁</div><div class="v52name"></div><div class="v52user"></div></div></div><div class="gifts" id="gchat"></div><div class="towers"><div class="city"></div><div class="v57towerhp chat" id="v57chat" hidden>🛡️ CHAT 300/300</div><div class="v57towerhp creator" id="v57creator" hidden>🛡️ CRIADOR 300/300</div><div class="tower"><div class="stack" id="tchat" style="--color:#d93653;--top:#ff9aa7"></div><div class="v1292-debris" aria-hidden="true"></div></div><div class="tower"><div class="stack" id="tcreator" style="--color:#1573d4;--top:#6bd8ff"></div><div class="v1292-debris" aria-hidden="true"></div></div></div><div class="gifts" id="gcreator"></div></div><div class="v71footer"><div class="v71tile"><small>🎁 ÚLTIMO EVENTO</small><span id="v71event">Aguardando...</span></div><div class="v71tile"><small>👑 MAIOR APOIADOR</small><span id="v71mvp">—</span></div><div class="v71tile"><small>👹 PRÓXIMO BOSS</small><span id="v71boss">—</span></div></div><div class="status" id="status">Aguardando jogadores...</div><div class="controls"><button id="activate">🔊 Ativar narrador</button></div><div class="v561panel" style="position:relative;margin:8px 14px;padding:8px;background:#0008;border-radius:10px"><label><input id="visualEnhanced" type="checkbox"> 🎨 Visual aprimorado (experimental)</label><small style="display:block;opacity:.7">Ative para ver cenário e torres ilustradas. Desative para voltar ao original.</small></div><div class="v55panel"><details><summary>🏆 V5.5 — Arena Avançada</summary><p id="v55status">Carregando...</p><button type="button" data-v55="bossPhase">👹 Próxima fase do chefão</button><button type="button" data-v55="bossHide">✖ Remover monstro</button><button type="button" data-v55="shieldChat">🛡️ Escudo CHAT</button><button type="button" data-v55="shieldCreator">🛡️ Escudo CRIADOR</button><button type="button" data-v55="combatTestHit">🧪 Testar dano (DEMO)</button><button type="button" data-v55="combatTestAttack">🔥 Testar ataque visual (DEMO)</button><button type="button" data-v55="combatTestShield">🛡️ Testar escudo visual (DEMO)</button><p id="v58stats"></p><div class="v60-settings"><label>🎬 Efeitos visuais: <select id="v60mode"><option value="economico">Econômico</option><option value="equilibrado">Equilibrado</option><option value="cinematografico">Cinematográfico</option></select></label><button type="button" data-v55="visualTest">🧪 Testar ataque visual</button><button type="button" data-v55="visualTestVictory">🏆 Testar vitória</button><small id="v60health">Efeitos independentes do placar</small><small class="v116-performance" id="v116perf">Economia máxima • ~1 quadro/s</small></div><button type="button" data-v55="skillChat">🔴 Habilidade CHAT</button><button type="button" data-v55="skillCreator">🔵 Habilidade CRIADOR</button><button type="button" data-v55="raffleDraw">🎟️ Sortear participantes</button><p>Para entrar no sorteio gratuito, digite <b>!sorteio</b> no chat.</p><label>Tema: <select id="v55theme"><option value="original">Original</option><option value="neon">Neon</option><option value="gold">Dourado</option></select></label><label>Voz: <select id="v55voice"><option value="">Padrão</option></select></label><label>Velocidade: <input id="v55speed" type="range" min="75" max="125" value="100"></label><label>Expressão: <input id="v55pitch" type="range" min="80" max="125" value="100"></label><p id="v55message"></p></details></div>
+<div class="arena"><div class="v71brand"><span>♛ LivePulse ♛</span><small>⚔ BATALHA DE INTERAÇÃO • ARENA VIVA ⚔</small></div><div class="header"><div class="side red">CHAT<div class="score" id="chat">120</div><small id="wc">VITÓRIAS 0</small></div><div class="vs">VS</div><div class="side blue">CRIADOR<div class="score" id="creator">120</div><small id="wr">VITÓRIAS 0</small></div></div><div class="meta">🏁 META <span id="goal">500</span> • <span id="clock">03:00</span> • RODADA <span id="round">1</span> <span id="v70next" hidden></span></div><div class="ld-guide" id="ldGuide" role="status" aria-live="off"><span id="ldLeader">⚔️ Disputa aberta</span><span id="ldProgress">CHAT 0% • CRIADOR 0%</span><span id="ldHelp">Como participar: !chat / !criador · !escudo / !foco</span></div><div class="field"><div id="ldEncounter" class="ld-encounter" aria-live="polite">⚔️ BATALHA EM ANDAMENTO</div><div class="v71scenery" aria-hidden="true"></div><div id="v127depth" aria-hidden="true"></div><div id="v127flash" aria-hidden="true"></div><div id="v119lighting" aria-hidden="true"></div><div id="v119portal" aria-hidden="true"></div><div class="v10-aura" aria-hidden="true"></div><div class="fx" id="fx"></div><div id="v1292AttackFx" aria-hidden="true"></div><div class="v59-fx-layer" id="v59Fx" aria-hidden="true"></div><div class="v60fx" id="v60Fx" aria-hidden="true"></div><div class="boss-monster" id="bossMonster" aria-label="Chefão da arena" hidden><div class="boss-monster-body"><div id="v1292Portal" aria-hidden="true"></div><img id="bossSprite" src="/visual_assets/boss_phase1.png" alt="Monstro chefão" onerror="this.hidden=true;this.nextElementSibling.style.display='block'"><svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monstro com chifres e olhos brilhantes"><path class="boss-horn" d="M32 55 Q8 33 17 5 Q45 17 53 43 M108 43 Q125 12 146 5 Q152 34 128 56" fill="#7255a6" stroke="#1b1135" stroke-width="6"/><path class="boss-face" d="M22 58 Q29 23 80 27 Q133 24 140 63 L134 115 Q81 148 26 113Z" fill="#6b38a4" stroke="#211335" stroke-width="7"/><path d="M37 71 L67 78 L53 88Z M123 71 L93 78 L107 88Z" fill="#ffdf50"/><path d="M51 108 Q81 123 110 108 L98 127 L88 115 L80 128 L69 115 L60 126Z" fill="#140d23" stroke="#2a1238" stroke-width="3"/><circle cx="48" cy="79" r="3" fill="#fff"/><circle cx="112" cy="79" r="3" fill="#fff"/></svg><div id="v1292WingRig" aria-hidden="true"><img id="v1292WingLeft" alt="" decoding="async"><img id="v1292WingRight" alt="" decoding="async"></div></div><div class="boss-monster-title">👹 CHEFÃO <span id="bossMonsterPhase">FASE 1</span></div><div class="boss-monster-health"><span id="bossMonsterHp"></span></div><div class="v57hp" id="v57hp">450 / 450 HP</div><div class="v58boss-next" id="v58bossNext" hidden>⚡ ATAQUE EM 10s</div></div><div class="v52gift chat" id="v52chat"><div class="v52box"><img alt="Presente CHAT"><div class="v52emoji" hidden>🎁</div><div class="v52name"></div><div class="v52user"></div></div></div><div class="v52gift creator" id="v52creator"><div class="v52box"><img alt="Presente CRIADOR"><div class="v52emoji" hidden>🎁</div><div class="v52name"></div><div class="v52user"></div></div></div><div class="gifts" id="gchat"></div><div class="towers"><div class="city"></div><div class="v57towerhp chat" id="v57chat" hidden>🛡️ CHAT 300/300</div><div class="v57towerhp creator" id="v57creator" hidden>🛡️ CRIADOR 300/300</div><div class="tower"><div class="stack" id="tchat" style="--color:#d93653;--top:#ff9aa7"></div><div class="v1292-debris" aria-hidden="true"></div></div><div class="tower"><div class="stack" id="tcreator" style="--color:#1573d4;--top:#6bd8ff"></div><div class="v1292-debris" aria-hidden="true"></div></div></div><div class="gifts" id="gcreator"></div></div><div class="v71footer"><div class="v71tile"><small>🎁 ÚLTIMO EVENTO</small><span id="v71event">Aguardando...</span></div><div class="v71tile"><small>👑 MAIOR APOIADOR</small><span id="v71mvp">—</span></div><div class="v71tile"><small>👹 PRÓXIMO BOSS</small><span id="v71boss">—</span></div></div><div class="status" id="status">Aguardando jogadores...</div><div class="controls"><button id="activate">🔊 Ativar narrador</button></div><div class="v561panel" style="position:relative;margin:8px 14px;padding:8px;background:#0008;border-radius:10px"><label><input id="visualEnhanced" type="checkbox"> 🎨 Visual aprimorado (experimental)</label><small style="display:block;opacity:.7">Ative para ver cenário e torres ilustradas. Desative para voltar ao original.</small></div><div class="v55panel"><details><summary>🏆 V5.5 — Arena Avançada</summary><p id="v55status">Carregando...</p><button type="button" data-v55="bossPhase">👹 Próxima fase do chefão</button><button type="button" data-v55="bossHide">✖ Remover monstro</button><button type="button" data-v55="shieldChat">🛡️ Escudo CHAT</button><button type="button" data-v55="shieldCreator">🛡️ Escudo CRIADOR</button><button type="button" data-v55="combatTestHit">🧪 Testar dano (DEMO)</button><button type="button" data-v55="combatTestAttack">🔥 Testar ataque visual (DEMO)</button><button type="button" data-v55="combatTestShield">🛡️ Testar escudo visual (DEMO)</button><p id="v58stats"></p><div class="v60-settings"><label>🎬 Efeitos visuais: <select id="v60mode"><option value="economico">Econômico</option><option value="equilibrado">Equilibrado</option><option value="cinematografico">Cinematográfico</option></select></label><button type="button" data-v55="visualTest">🧪 Testar ataque visual</button><button type="button" data-v55="visualTestVictory">🏆 Testar vitória</button><small id="v60health">Efeitos independentes do placar</small><small class="v116-performance" id="v116perf">Economia máxima • ~1 quadro/s</small></div><button type="button" data-v55="skillChat">🔴 Habilidade CHAT</button><button type="button" data-v55="skillCreator">🔵 Habilidade CRIADOR</button><button type="button" data-v55="raffleDraw">🎟️ Sortear participantes</button><p>Para entrar no sorteio gratuito, digite <b>!sorteio</b> no chat.</p><label>Tema: <select id="v55theme"><option value="original">Original</option><option value="neon">Neon</option><option value="gold">Dourado</option></select></label><label>Voz: <select id="v55voice"><option value="">Padrão</option></select></label><label>Velocidade: <input id="v55speed" type="range" min="75" max="125" value="100"></label><label>Expressão: <input id="v55pitch" type="range" min="80" max="125" value="100"></label><p id="v55message"></p></details></div>
 <div class="v54panel"><details><summary>👑 Comunidade V5.4 — Painel</summary><p id="v54top">Carregando apoiadores...</p><p id="v54poll"></p><button type="button" id="v54pollstart">🗳️ Iniciar votação (60s)</button><button type="button" id="v54pollend">Encerrar votação</button><p><a href="/report.csv" onclick="return v128Export(event,'csv')">📊 Exportar relatório CSV</a> · <a href="/diagnostics" onclick="return v128Export(event,'json')">🛡️ Diagnóstico</a></p><p id="v54msg"></p></details></div>
 <div class="v53panel"><details><summary>🎙️ Retenção V5.3 — Voz e histórico</summary><label>Volume do narrador <input id="v53volume" type="range" min="0" max="100" value="85"></label><label>Frequência <select id="v53freq"><option value="normal">Normal</option><option value="quiet">Discreta</option></select></label><p id="v53history"></p><p id="v53heroes"></p></details></div>
 <div class="overlay-link"><a href="/overlay" style="color:#aee7ff">📺 Abrir modo transmissão</a> · <a href="/painel" style="color:#ffe29a">🛠️ Central V12.4</a></div><div class="v51panel"><details><summary>📊 Arena Inteligente — Estatísticas e desafios</summary><p id="v51stats">Carregando...</p><p id="v51goals"></p><p id="v51duel"></p><p id="v51top"></p><button id="v51startDuel">⚔️ Iniciar desafio entre os dois líderes</button><p id="v51msg"></p></details></div><div class="admin-v49" id="admin49"><details><summary>🎮 Arena Suprema — Controle</summary><div class="adminbuttons"><button data-action="pause">⏸ Pausar/Retomar</button><button data-action="start">▶ Iniciar</button><button data-action="finish">🏁 Encerrar rodada</button><button data-action="boss">👑 Chefão</button><button data-action="mission">🎯 Missão CHAT</button><button data-action="missionCreator">🎯 Missão CRIADOR</button><button data-action="surprise">⚡ Pontos em dobro</button></div><div id="adminMsg"></div><h4>🏅 Rodada</h4><ol id="roundSupport"></ol><h4>🏆 Campeonato</h4><ol id="champSupport"></ol><h4>🛡️ Conexão e eventos</h4><div id="conn49"></div><ol id="logs49"></ol></details></div><div class="settings"><details><summary>⚙️ Configurações</summary><div id="fields"></div><button id="save">Salvar e reiniciar rodada</button><div id="saveStatus"></div></details></div><div class="hint">Grátis: !chat ou !criador para escolher o time; curtidas e compartilhamentos ajudam após votar • Presentes: efeitos especiais</div><div class="rank"><h3>🏆 Ranking</h3><ol id="rank"></ol><h4>🎁 Apoiadores</h4><ol id="support"></ol><h4>💬 Mais ativos</h4><ol id="activity"></ol><h4>🏁 Histórico</h4><ol id="history"></ol></div></div><script>
@@ -1797,14 +1924,41 @@ function v59Effect(type,detail){
  }
 }
 
-function v58Countdown(){const el=document.getElementById('v58bossNext');if(!el)return;el.hidden=!v58BossActive;if(v58BossActive)el.textContent='⚡ ATAQUE EM '+Math.max(0,Math.ceil((v58NextAttack-Date.now())/1000))+'s'}
+function v58Countdown(){const el=document.getElementById('v58bossNext');if(!el)return;el.hidden=!v58BossActive;if(v58BossActive)el.textContent='⚡ ATAQUE EM '+Math.max(0,Math.ceil((v58NextAttack-Date.now())/1000))+'s'+(window.ldAttackTarget?' → '+window.ldAttackTarget:'')}
 setInterval(v58Countdown,1000);
+function ldRenderEncounter(r){
+ const c=r.combat||{},e=r.levelDesign||{},layer=document.querySelector('body.overlay .field');
+ const label=document.getElementById('ldEncounter');if(!layer||!label)return;
+ const target=c.target==='chat'?'CHAT':c.target==='creator'?'CRIADOR':null;
+ layer.classList.toggle('ld-phase3',!!(c.active&&c.stage===3));
+ layer.classList.toggle('ld-boss-active',!!c.active);
+ for(const team of ['chat','creator']){
+  const tower=document.querySelector('.towers .tower'+(team==='chat'?':nth-last-child(2)':':last-child'));
+  if(!tower)continue;
+  const state=c.towers&&c.towers[team];
+  tower.classList.toggle('ld-targeted',!!(target===team.toUpperCase()&&c.active));
+  tower.classList.toggle('ld-destroyed',!!(state&&state.hp===0&&c.active));
+  tower.classList.toggle('ld-damaged',!!(state&&state.hp>0&&state.hp/state.maxHp<.45&&c.active));
+ }
+ const next=Math.max(0,Math.ceil(((c.nextAttack||0)-Date.now())/1000));
+ const down=['chat','creator'].filter(team=>c.towers&&c.towers[team]&&c.towers[team].hp===0);
+ let title='⚔️ CHAT x CRIADOR • !chat / !criador';
+ if(c.active&&target)title='⚠️ CHEFÃO MIRA '+target+' • '+next+'s';
+ else if(c.active)title='👹 CHEFÃO FASE '+(c.stage||1)+' • ATAQUE EM '+next+'s';
+ else if(e.phase==='climax')title='🔥 CLÍMAX • ÚLTIMOS SEGUNDOS';
+ else if(e.phase==='recuperacao')title='🛡️ RECUPERAÇÃO • PREPARE A PRÓXIMA RODADA';
+ else if(e.phase==='resultado')title='🏆 RESULTADO DA RODADA';
+ if(down.length)title+=' • TORRE '+down.map(x=>x.toUpperCase()).join(' + ')+' CAÍDA';
+ label.textContent=title;
+ label.classList.toggle('ld-warning',!!(c.active&&target));
+}
 function v57UI(r){if(!r||!r.combat)return;const c=r.combat;
-v58BossActive=c.active;v58NextAttack=c.nextAttack||0;v58Countdown();
+v58BossActive=c.active;v58NextAttack=c.nextAttack||0;window.ldAttackTarget=c.target?c.target.toUpperCase():'';v58Countdown();
 const stats=document.getElementById('v58stats');if(stats)stats.textContent='⚔️ Dano CHAT: '+c.damage.chat+' • CRIADOR: '+c.damage.creator+' • Chefões vencidos: '+c.kills+' • Top: '+(c.top||[]).slice(0,3).map(x=>x[0]+' ('+x[1]+')').join(', ');
  showBossMonster(c.stage,c.active);
  if(c.active){const ratio=Math.max(0,Math.min(100,c.hp/c.maxHp*100));document.getElementById('bossMonsterHp').style.width=ratio+'%';document.getElementById('v57hp').textContent=c.hp+' / '+c.maxHp+' HP'}
- for(const team of ['chat','creator']){const el=document.getElementById('v57'+team);el.hidden=!c.active;if(c.active){const t=c.towers[team];el.textContent='🛡️ '+team.toUpperCase()+' '+t.hp+'/'+t.maxHp+(t.shield?' +'+t.shield:'')}}
+ for(const team of ['chat','creator']){const el=document.getElementById('v57'+team);el.hidden=!c.active;if(c.active){const t=c.towers[team];el.textContent=(t.hp===0?'💥 ':'🛡️ ')+team.toUpperCase()+' '+t.hp+'/'+t.maxHp+(t.shield?' +'+t.shield:'')+(t.hp===0&&t.downUntil?' • volta '+Math.max(0,Math.ceil((t.downUntil-Date.now())/1000))+'s':'')}}
+ ldRenderEncounter(r);
 }
 function v55UI(r){if(!r||!r.advanced)return;const a=r.advanced;
 showBossMonster(a.bossStage,a.bossStage>0);document.getElementById('v55status').textContent='🏆 Temporada '+a.season+' • Torneio: '+a.bracket.length+'/8 campeões • 👹 Chefão fase '+a.bossStage+' • 🎟️ Inscritos: '+a.raffleEntries;
@@ -1883,7 +2037,12 @@ function configUI(c){
  }
  document.getElementById('goal').textContent=c.goal;const keys=['goal','duration','start','chatVote','creatorVote','followPoints','botSpeed','bestOf','maxEventPoints','maxCombinedMultiplier'];document.getElementById('fields').innerHTML=keys.map(k=>'<label>'+k+'<input type="number" id="c_'+k+'" value="'+c[k]+'"></label>').join('')+'<label>Som<input type="checkbox" id="c_sound" '+(c.sound?'checked':'')+'></label>'+['chat','creator'].map(t=>'<h4>'+t.toUpperCase()+' (nome | pontos)</h4><textarea id="c_'+t+'">'+c[t+'Names'].map((n,i)=>n+' | '+c[t+'Points'][i]).join('\\n')+'</textarea>').join('')}
 document.getElementById('save').onclick=async()=>{const c=JSON.parse(JSON.stringify(currentConfig));for(const k of ['goal','duration','start','chatVote','creatorVote','followPoints','botSpeed','bestOf','maxEventPoints','maxCombinedMultiplier'])c[k]=Number(document.getElementById('c_'+k).value);c.sound=document.getElementById('c_sound').checked;for(const t of ['chat','creator']){const rows=document.getElementById('c_'+t).value.trim().split('\\n').map(x=>x.split('|').map(v=>v.trim()));c[t+'Names']=rows.map(x=>x[0]);c[t+'Points']=rows.map(x=>Number(x[1]))}try{const r=await adminFetch('/config',c);if(!r.ok)throw Error(await r.text());configUI(c);document.getElementById('saveStatus').textContent='Salvo!'}catch(e){document.getElementById('saveStatus').textContent=e.message}};
-function render(g){v70phase=g.phase;try{const mv=Object.entries(g.supporters||{}).sort((a,b)=>b[1]-a[1])[0];document.getElementById('v71mvp').textContent=mv?mv[0]+' • '+mv[1]+' pts':'—'}catch(e){}document.getElementById('chat').textContent=g.chat;document.getElementById('creator').textContent=g.creator;document.getElementById('wc').textContent='VITÓRIAS '+g.winsChat;document.getElementById('wr').textContent='VITÓRIAS '+g.winsCreator;document.getElementById('round').textContent=g.round;document.getElementById('clock').textContent=String(Math.floor(g.remaining/60)).padStart(2,'0')+':'+String(g.remaining%60).padStart(2,'0');for(const t of ['chat','creator'])document.getElementById('t'+t).style.height=Math.max(8,Math.min(95,g[t]/currentConfig.goal*100))+'%';const list=o=>Object.entries(o||{}).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([n,p])=>'<li>'+escapeHtml(n)+' — '+p+'</li>').join('');document.getElementById('rank').innerHTML=list(g.ranking);document.getElementById('support').innerHTML=list(g.supporters);document.getElementById('activity').innerHTML=list(g.activity);document.getElementById('history').innerHTML=(g.history||[]).slice(0,5).map(h=>'<li>Rodada '+h.round+': '+escapeHtml(h.winner)+' ('+h.chat+' × '+h.creator+')</li>').join('')}
+function render(g){v70phase=g.phase;
+ const lead=document.getElementById('ldLeader'),progress=document.getElementById('ldProgress');
+ const target=Math.max(1,Number(currentConfig.goal)||500),chatPct=Math.min(100,Math.max(0,Math.round(100*g.chat/target))),creatorPct=Math.min(100,Math.max(0,Math.round(100*g.creator/target)));
+ if(lead)lead.textContent=g.phase==='playing'?(g.chat===g.creator?'⚔️ EMPATE':g.chat>g.creator?'🔴 CHAT NA FRENTE':'🔵 CRIADOR NA FRENTE'):'🏆 RESULTADO / INTERVALO';
+ if(progress)progress.textContent='CHAT '+chatPct+'% • CRIADOR '+creatorPct+'% da meta';
+try{const mv=Object.entries(g.supporters||{}).sort((a,b)=>b[1]-a[1])[0];document.getElementById('v71mvp').textContent=mv?mv[0]+' • '+mv[1]+' pts':'—'}catch(e){}document.getElementById('chat').textContent=g.chat;document.getElementById('creator').textContent=g.creator;document.getElementById('wc').textContent='VITÓRIAS '+g.winsChat;document.getElementById('wr').textContent='VITÓRIAS '+g.winsCreator;document.getElementById('round').textContent=g.round;document.getElementById('clock').textContent=String(Math.floor(g.remaining/60)).padStart(2,'0')+':'+String(g.remaining%60).padStart(2,'0');for(const t of ['chat','creator'])document.getElementById('t'+t).style.height=Math.max(8,Math.min(95,g[t]/currentConfig.goal*100))+'%';const list=o=>Object.entries(o||{}).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([n,p])=>'<li>'+escapeHtml(n)+' — '+p+'</li>').join('');document.getElementById('rank').innerHTML=list(g.ranking);document.getElementById('support').innerHTML=list(g.supporters);document.getElementById('activity').innerHTML=list(g.activity);document.getElementById('history').innerHTML=(g.history||[]).slice(0,5).map(h=>'<li>Rodada '+h.round+': '+escapeHtml(h.winner)+' ('+h.chat+' × '+h.creator+')</li>').join('')}
 const v52Timers={chat:null,creator:null};
 function showGift52(e){if(e.type!=='gift'||!['chat','creator'].includes(e.team))return;lpAnimate('gift',e.team);
  const team=e.team,el=document.getElementById('v52'+team);if(!el)return;
@@ -2024,6 +2183,8 @@ if(d.combatAttack){v115Cinematic('attack',d.combatAttack);window['v112DragonAtta
 if(d.combatShield){v115Cinematic('shield',d.combatShield);v60safe('shield',d.combatShield)}
 if(d.combatVictory){v115Cinematic('victory',d.combatVictory);window.v111BossDefeatUntil=Date.now()+2600;v60safe('victory',d.combatVictory);eventBanner('🏆 CHEFÃO DERROTADO! '+d.combatVictory.winner.toUpperCase());emotional('O chefão foi derrotado! Parabéns ao time '+d.combatVictory.winner+'!',5,'epic')}
 if(d.combatPhase){eventBanner('👹 FASE '+d.combatPhase.stage+'!')}
+if(d.combatTelegraph){eventBanner('⚠️ CHEFÃO VAI ATACAR '+d.combatTelegraph.team.toUpperCase()+'!');}
+if(d.combatTowerRestored){eventBanner('🛡️ TORRE '+d.combatTowerRestored.team.toUpperCase()+' RECONSTRUÍDA');}
 if(d.combatTowerDown){v115Cinematic('towerdown',d.combatTowerDown);window['v112DragonRoar_'+(d.combatTowerDown.team==='chat'?'creator':'chat')]=Date.now()+2200;eventBanner('💥 TORRE '+d.combatTowerDown.team.toUpperCase()+' DESTRUÍDA!')}
 if(d.combat){if(d.combat.active&&window.v111PrevBossHp!=null&&Number(d.combat.hp)<window.v111PrevBossHp)window.v111BossHurtUntil=Date.now()+750;window.v111PrevBossHp=d.combat.active?Number(d.combat.hp):null;v57UI({combat:d.combat});v70TowerStates(d.combat)}
 if(d.skill){v115Cinematic('skill',d.skill);lpAnimate('skill',d.skill.team);eventBanner('⚡ HABILIDADE '+d.skill.team.toUpperCase()+' +'+d.skill.pts)}
