@@ -1,0 +1,81 @@
+{
+  "project": "LivePulse Batalha",
+  "base_version": "12.9.4.1",
+  "branch": "feat/level-design-p0-p2",
+  "test_type": "offline isolated",
+  "real_tiktok_connection": false,
+  "test_results": [
+    {
+      "group": "Level Design Node runtime integration",
+      "passed": 20,
+      "total": 20,
+      "status": "passed"
+    },
+    {
+      "group": "Pure Node rules assertions",
+      "passed": 13,
+      "total": 13,
+      "status": "passed"
+    },
+    {
+      "group": "Responsive simulated Chromium 320/360/393/430/480px",
+      "passed": 25,
+      "total": 25,
+      "status": "passed",
+      "notes": "about:blank DOM, overlay class forced; localStorage blocked by sandbox, PNG fetch unavailable"
+    },
+    {
+      "group": "Browser/platform server checks during exploratory QA",
+      "passed": 14,
+      "total": 14,
+      "status": "passed",
+      "notes": "includes telegraph, tower fall/recovery, SSE and health; overlaps with runtime tests; do not sum as independent"
+    },
+    {
+      "group": "Legacy economy unit tests",
+      "passed": 48,
+      "total": 48,
+      "status": "passed"
+    },
+    {
+      "group": "Legacy economy server integration",
+      "passed": 33,
+      "total": 33,
+      "status": "passed"
+    },
+    {
+      "group": "Legacy combat regression",
+      "passed": 33,
+      "total": 33,
+      "status": "passed"
+    },
+    {
+      "group": "Stress, memory, restart, persistence, SSE",
+      "passed": 28,
+      "total": 28,
+      "status": "passed",
+      "duration_seconds": 20,
+      "samples": 57,
+      "node_rss_peak_mb": 36,
+      "node_heap_peak_mb": 9,
+      "requests": 114,
+      "http_failures": 0
+    },
+    {
+      "group": "Historical cumulative suite up to V12.7",
+      "status": "passed",
+      "notes": "log confirmed V12.7 final success; full historical run timed out during V12.8"
+    },
+    {
+      "group": "Historical cumulative suite V12.8 through V12.9.4.1",
+      "status": "incomplete",
+      "notes": "execution timed out after 180 seconds, not reported as passed"
+    }
+  ],
+  "limitations": [
+    "No TikTok LIVE real tests",
+    "No physical Android FPS or battery readings",
+    "Mobile Chromium DOM used offline due policy blocking localhost navigation",
+    "Main GitHub repo lacks original PNG assets before this PR"
+  ]
+}

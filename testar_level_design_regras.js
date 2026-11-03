@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+const {RULES,chooseTarget,bossReward,pace,teamName}=require('./level_design_v130');
+assert.equal(RULES.maxAutomaticBossesPerRound,1);
+assert.equal(RULES.telegraphMs,4000);
+assert.equal(RULES.towerRebuildMs,12000);
+assert.equal(chooseTarget({chat:70,creator:20},{chat:{hp:100},creator:{hp:100}}),'chat');
+assert.equal(chooseTarget({chat:70,creator:20},{chat:{hp:0},creator:{hp:100}}),'creator');
+assert.equal(chooseTarget({chat:70,creator:20},{chat:{hp:0},creator:{hp:0}}),null);
+assert.equal(bossReward(500,150),40);
+assert.equal(bossReward(1000,60),60);
+assert.equal(teamName('creator'),'CRIADOR');
+assert.equal(pace({phase:'playing',paused:false,remaining:30,duration:180,boss:{active:true},roundSummoned:1,round:1}), 'chefao');
+assert.equal(pace({phase:'playing',paused:false,remaining:10,duration:180,boss:{active:true},roundSummoned:1,round:1}), 'climax');
+assert.equal(pace({phase:'playing',paused:false,remaining:90,duration:180,boss:{active:false},roundSummoned:1,round:1}), 'recuperacao');
+assert.equal(pace({phase:'ended',paused:false,remaining:0,duration:180,boss:{active:false},roundSummoned:1,round:1}), 'resultado');
+console.log('LEVEL DESIGN RULES: 13/13 OK');
