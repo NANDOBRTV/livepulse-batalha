@@ -1,0 +1,58 @@
+LIVEPULSE V12.9.4 — BALANCEAMENTO E ECONOMIA SEGURA
+===================================================
+
+BASE: LivePulse V12.9.3 — todas as artes premium, sprites independentes,
+animacoes, painel, modos Android, integracao TikTok e simulador preservados.
+NENHUMA LIVE REAL FOI UTILIZADA NOS TESTES.
+
+CORRECOES DE ECONOMIA (RECOMENDACOES DA AUDITORIA)
+1. Pontos de qualquer evento sao limitados a min(maxEventPoints, 30% da meta).
+   Exemplo: meta 500 -> teto 150 por evento, mesmo com presente repetido 100x,
+   combo e pontuacao em dobro. Teto customizavel (maxEventPoints) no painel
+   CLASSICO. maxCombinedMultiplier limita multiplicadores acumulados a 3x.
+2. Rosquinha que tirava -20 pontos agora soma +20. Outros presentes com
+   pontuacao negativa personalizada sao convertidos para 0, sem virar premio.
+   Cookies ja tinha +30 no codigo anterior e continua com +30.
+3. IDs reais TikTok NUNCA sao inventados. Em batalha_gift_ids.json, associe
+   os IDs obtidos legitimamente do painel/diagnosticos aos itens das equipes.
+   O arquivo de exemplo NAO contem IDs reais. Nome de presente exclusivo
+   pode ser atribuido por nome; se o nome existir nas duas equipes (Bloco,
+   Rosquinha), exige mapeamento explicito e, sem ele, nao soma ao time errado.
+   Presentes ainda contam como interacao/estatistica.
+4. Participacao gratuita: !chat e !criador selecionam o time por 20 min;
+   curtidas somam ate 4 pontos por evento a cada 1,2 s (10 curtidas por
+   ponto); compartilhar soma 3 a cada 30 s; seguir soma ate 3 a cada 10 min.
+   Comandos de equipe recebem cooldown de 1,5 s por usuario.
+5. Recompensas de chefe e missao ajustadas a meta e limitadas pelo mesmo teto.
+   Pontuacao positiva e registros de apoiadores preservados.
+6. Em /health e /state, runtime.economy e economy mostram pontos limitados,
+   eventos bloqueados e presentes que precisam ser configurados.
+
+TABELAS: idx (0 a 6) para equipe 'chat' ou 'creator'
+CHAT: 0 Bloco, 1 Rosa, 2 Coracao, 3 Rosquinha, 4 Laco,
+      5 Cachorrinho, 6 Dinheiro.
+CRIADOR: 0 Bloco, 1 TikTok, 2 Cookies, 3 Rosquinha,
+         4 Coroa, 5 Coracoes Azul, 6 Coroa Real.
+Crie ~/livepulse/batalha_gift_ids.json a partir do exemplo e substitua
+"SUBSTITUA_PELO_ID_REAL" por um ID valido REAL obtido de forma legitima.
+O arquivo do usuario e protegido contra atualizacoes. Reinicie o servidor
+para carregar o mapeamento. IDs ficticios nao devem ser tratados como reais.
+
+INSTALACAO TERMUX
+- Pare a versao anterior (Ctrl+C).
+- Baixe o ZIP completo OU o patch (se ja tiver V12.9.3), em Downloads.
+- Extraia instalar_v1294.py do ZIP (unzip -o <arquivo>.zip instalar_v1294.py -d ~/storage/downloads)
+- python ~/storage/downloads/instalar_v1294.py
+- python ~/livepulse/testar_v1294.py (servidor parado)
+- node ~/livepulse/batalha.js --demo OU node ~/livepulse/batalha.js --sim-tiktok
+- Abra http://127.0.0.1:3001/overlay?v=1294 e /painel?v=1294
+
+O instalador descobre ZIPs pelo manifesto mesmo se o Android os renomeou,
+valida hashes SHA-256, faz backup e tenta restaurar em caso de falha.
+NUNCA USAR o modo @usuario para testes offline.
+
+LIMITACOES
+- Eventos LIVE reais e IDs de presentes reais nao foram verificados.
+- Mudancas de regras requerem avaliacao de experiencia de usuarios antes
+  de lancamento publico.
+- Nao ha garantia de FPS ou duracao de bateria no dispositivo fisico.

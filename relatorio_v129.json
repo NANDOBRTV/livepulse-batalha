@@ -1,0 +1,16 @@
+{
+  "version": "12.9",
+  "groups": [
+    {
+      "suite": "Regressao completa V12.8",
+      "passed": true
+    },
+    {
+      "suite": "Reconstrucao artistica V12.9",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "seconds": 42.3,
+  "liveReal": false
+}

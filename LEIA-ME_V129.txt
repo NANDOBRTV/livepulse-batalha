@@ -1,0 +1,33 @@
+LIVEPULSE V12.9 — RECONSTRUCAO ARTISTICA CINEMATOGRAFICA (OFFLINE)
+Base: V12.8. Atualizacao de arte em camadas independentes. Nao e captura unica da interface e nao usa a imagem de referencia como HUD estatico.
+
+ARTES
+- 2 dragoes, 4 acoes, 8 quadros por acao = 64 PNGs transparentes.
+- 3 chefes, 5 acoes, 8 quadros = 120 PNGs transparentes.
+- 2 torres, 6 estados, 8 quadros = 96 PNGs transparentes.
+- Cenario de fantasia 900x1450 e nevoa RGBA independente = 2 PNGs.
+- Total 282 novos recursos v129. Cada quadro do jogo vem de arquivos separados; modelos sao ilustracoes 2D, NAO modelos 3D nem hiper-realistas.
+- A economia preserva sprites anteriores e economiza memoria; Equilibrado e Cinematografico usam o novo conjunto.
+- Os pontos, 14 presentes, placares, escudos, API, painel, TikTok offline e regras de combate continuam dinamicos.
+
+INSTALACAO NO TERMUX
+- Pare o Node com Ctrl+C; copie o ZIP para ~/storage/downloads
+cd ~/livepulse
+unzip -o ~/storage/downloads/LivePulse_V12_9_Reconstrucao_Artistica_Cinematografica.zip instalar_v129.py -d ~/storage/downloads
+python ~/storage/downloads/instalar_v129.py
+node batalha.js --demo
+
+Arena: http://127.0.0.1:3001/overlay?v=129
+Painel: http://127.0.0.1:3001/painel?v=129
+Preflight: http://127.0.0.1:3001/preflight
+Simulador offline TikTok: node batalha.js --sim-tiktok
+Testes completos (com servidor parado): python testar_v129.py
+Testes de arte: python testar_arte_v129.py
+
+SEGURANCA
+Instalador confere SHA-256, sintaxe do servidor, scripts do navegador, faz backup automatico com restauracao em falha e preserva configuracao, chave, estados e icones presentes.
+Nao conectar TikTok real durante testes. Primeira LIVE apenas apos conclusao e validacao final no Android.
+
+LIMITACOES
+A referencia e uma ilustracao de alto detalhamento. Esta etapa e um salto para arte 2D vetorial original, com textura e mais detalhes, mas NAO replica fidelidade de pintura hiper-realista/3D. FPS/temperatura/bateria e aparencia final precisam ser avaliados no celular.
+O pacote acrescenta cerca de 50MB de recursos; tenha armazenamento livre e mantenha o modo Economico para aparelhos sobrecarregados.

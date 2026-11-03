@@ -1,0 +1,11 @@
+{
+  "version": "12.8",
+  "executed": "offline",
+  "liveTikTokUsed": false,
+  "groups": {
+    "legacy": 194,
+    "integration": 54
+  },
+  "totalChecks": 248,
+  "notes": "Testes do software no Node.js isolado; nao mede FPS fisico Android nem valida LIVE real."
+}

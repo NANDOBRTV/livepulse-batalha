@@ -1,0 +1,457 @@
+{
+  "version": "12.6",
+  "durationSeconds": 12,
+  "passed": 28,
+  "total": 28,
+  "checks": [
+    {
+      "name": "Servidor isolado inicia",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Diagnostico V12.6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Telemetria de loop e cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML nao fica preso no cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Renderizacao com temporizador adaptativo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Configuracao evita atualizacoes redundantes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Polling SSE continua como recuperacao",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Sprite PNG carregado com cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Revalidacao sprite retorna 304",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Presente PNG com cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Presente PNG 304",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Estado dinamico sem cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "SSE heartbeat sem eventos falsos",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Clientes SSE liberados",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Servidor permanece ativo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Consultas durante sessao sem falhas",
+      "ok": true,
+      "detail": "68 consultas, 0 falhas"
+    },
+    {
+      "name": "Partida DEMO executando",
+      "ok": true,
+      "detail": "179->168"
+    },
+    {
+      "name": "RSS dentro do limite de teste",
+      "ok": true,
+      "detail": "Pico: 35 MB"
+    },
+    {
+      "name": "Heap dentro do limite de teste",
+      "ok": true,
+      "detail": "Pico: 8 MB"
+    },
+    {
+      "name": "Revalidacoes registradas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Heartbeat registrado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Conexoes SSE nao acumuladas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Interrupcao forçada simulada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Servidor reinicia apos falha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pontuacao restaurada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Rodada restaurada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pausa restaurada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Chave administrativa preservada",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "samples": [
+    {
+      "seconds": 0.0,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 179
+    },
+    {
+      "seconds": 0.36,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 179
+    },
+    {
+      "seconds": 0.72,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 179
+    },
+    {
+      "seconds": 1.07,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 178
+    },
+    {
+      "seconds": 1.42,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 178
+    },
+    {
+      "seconds": 1.78,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 178
+    },
+    {
+      "seconds": 2.13,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 177
+    },
+    {
+      "seconds": 2.48,
+      "rssMB": 32,
+      "heapMB": 8,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 177
+    },
+    {
+      "seconds": 2.83,
+      "rssMB": 32,
+      "heapMB": 8,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 177
+    },
+    {
+      "seconds": 3.18,
+      "rssMB": 32,
+      "heapMB": 8,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 176
+    },
+    {
+      "seconds": 3.54,
+      "rssMB": 32,
+      "heapMB": 8,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 176
+    },
+    {
+      "seconds": 3.89,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 176
+    },
+    {
+      "seconds": 4.24,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 175
+    },
+    {
+      "seconds": 4.59,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 175
+    },
+    {
+      "seconds": 4.95,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 175
+    },
+    {
+      "seconds": 5.3,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 174
+    },
+    {
+      "seconds": 5.65,
+      "rssMB": 32,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 174
+    },
+    {
+      "seconds": 6.0,
+      "rssMB": 35,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 173
+    },
+    {
+      "seconds": 6.36,
+      "rssMB": 35,
+      "heapMB": 8,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 173
+    },
+    {
+      "seconds": 6.71,
+      "rssMB": 35,
+      "heapMB": 8,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 173
+    },
+    {
+      "seconds": 7.06,
+      "rssMB": 35,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 172
+    },
+    {
+      "seconds": 7.41,
+      "rssMB": 35,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 172
+    },
+    {
+      "seconds": 7.77,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 172
+    },
+    {
+      "seconds": 8.12,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 171
+    },
+    {
+      "seconds": 8.47,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 171
+    },
+    {
+      "seconds": 8.83,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 1,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 171
+    },
+    {
+      "seconds": 9.18,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 170
+    },
+    {
+      "seconds": 9.53,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 170
+    },
+    {
+      "seconds": 9.88,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 170
+    },
+    {
+      "seconds": 10.24,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 169
+    },
+    {
+      "seconds": 10.59,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 169
+    },
+    {
+      "seconds": 10.95,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 169
+    },
+    {
+      "seconds": 11.3,
+      "rssMB": 34,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 168
+    },
+    {
+      "seconds": 11.65,
+      "rssMB": 35,
+      "heapMB": 7,
+      "lagMs": 0,
+      "sseClients": 0,
+      "phase": "playing",
+      "remaining": 168
+    }
+  ],
+  "scope": "Node isolated offline DEMO, no live TikTok connection, no Android hardware measurement"
+}

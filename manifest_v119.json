@@ -1,0 +1,10 @@
+{
+  "version": "11.9",
+  "base": "11.8",
+  "assets": {
+    "livepulse_visual/v119_glow_chat.png": "b4e5e1de7b0c4dfb2fa1d547522883e2445b4955b9076763a3ad061cbb75b186",
+    "livepulse_visual/v119_glow_creator.png": "fb712b51e05875fca7f458d4894c8dd610399e62efa7514a38215c028de7f0da",
+    "livepulse_visual/v119_portal_halo.png": "6789189e416121c6dd94e9a22d601639613cc9c712abdea2996b6cd53ccb0785",
+    "livepulse_visual/v119_victory_flare.png": "c6ecd01f6e7c92d737d3590b1548d6a9fedbb48459c0e796066ee259191de215"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": "11.8",
+  "base": "11.7",
+  "tests_passed": 33,
+  "tests_total": 33,
+  "server_sha256": "13c112f5db3dd6fa079b4b483ce063208885495be4b6eca3f5781e6d401feb64",
+  "features": [
+    "health endpoint",
+    "streamEnd retry cleanup",
+    "isolated regression suite"
+  ]
+}

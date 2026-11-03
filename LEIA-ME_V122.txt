@@ -1,0 +1,16 @@
+LivePulse V12.2 — Estabilidade Android (testes de servidor em ambiente isolado)
+Base: V12.1. Preserva regras de batalha, visuais e conector TikTok.
+Alteracoes: telemetria heapUsedMB e heapTotalMB em /health; limite defensivo de 32 conexoes simultaneas SSE; testes de estresse, reinicio apos encerramento abrupto, persistencia e memoria.
+
+Instalacao: coloque LivePulse_V12_2_Estabilidade_Android.zip em ~/storage/downloads. Extraia instalar_v122.py para Downloads e execute python ~/storage/downloads/instalar_v122.py.
+
+Testes (pare o servidor antes):
+ cd ~/livepulse
+ python testar_v122.py
+ python testar_tiktok_v121.py
+ python testar_estabilidade_v122.py
+ LIVEPULSE_STRESS_SECONDS=180 python testar_estabilidade_v122.py
+
+O teste de estresse usa a porta 3001 e um diretorio temporario. O relatorio e gravado em relatorio_estabilidade_v122.json. O teste de 180 segundos e opcional; o padrao e 25 segundos.
+
+IMPORTANTE: nenhum teste substitui a verificacao de RAM, bateria, aquecimento e Chrome Android no aparelho. Nao houve conexao a TikTok LIVE real.

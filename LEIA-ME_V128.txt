@@ -1,0 +1,41 @@
+LivePulse V12.8 — REVISAO E INTEGRACAO GERAL
+Base: LivePulse V12.7. Todas as artes, sprites, batalhas e simulador TikTok mantidos.
+
+NOVIDADES:
+- Limpeza do heartbeat SSE duplicado (apenas temporizador configuravel da V12.6).
+- Protecao da exportacao /report.csv e /diagnostics via chave administrativa.
+- Os links de exportacao do painel seguem disponiveis e enviam cabecalho autenticado.
+- Health atualiza release para 12.8, preservando as metricas antigas.
+- Novo /preflight para verificar arquivos graficos, modulos, dados, permissoes e estado
+  sem acessar servidores TikTok, contas ou qualquer LIVE real.
+- Regressao completa de 194 verificacoes + nova bateria de 54 integracoes offline.
+- Instalador valida hashes SHA256, sintaxe Node e JS do navegador, cria backup de
+  todas as versoes anteriores e tenta rollback em falhas durante a copia.
+
+COMO INSTALAR NO TERMUX:
+1. Copie o ZIP para ~/storage/downloads
+2. Pare o Node anterior com Ctrl+C.
+3. Execute:
+   cd ~/livepulse
+   unzip -o ~/storage/downloads/LivePulse_V12_8_Revisao_Integracao_Geral.zip instalar_v128.py -d ~/storage/downloads
+   python ~/storage/downloads/instalar_v128.py
+4. Inicie em modo DEMO: node batalha.js --demo
+   Ou a simulacao TikTok offline: node batalha.js --sim-tiktok
+
+PAINEL: http://127.0.0.1:3001/painel?v=128
+ARENA: http://127.0.0.1:3001/overlay?v=128
+PRE-FLIGHT: http://127.0.0.1:3001/preflight
+TESTES (com servidor parado):
+   cd ~/livepulse
+   python testar_v128.py
+
+MODO REAL: nao testado nesta versao, por decisao do usuario. Nao conecte a
+uma LIVE real antes da validacao final do jogo.
+
+SE ALGO FALHAR:
+- A instalacao imprime a pasta backup_antes_v128_... com o backup completo.
+- Pare o servidor e preserve essa pasta para restauracao dos arquivos anteriores.
+- A instalacao nao substitui configuracoes nem dados persistidos ou icones
+  de presentes ja existentes. A chave administrativa tambem fica preservada.
+- /preflight inclui verificacoes locais e nao garante compatibilidade com
+  servidores externos do TikTok nem desempenho fisico do seu Android.

@@ -1,0 +1,408 @@
+{
+  "version": "5.6",
+  "source": "LivePulse visual concept sheet",
+  "count": 80,
+  "sprites": {
+    "logo": {
+      "file": "logo.png",
+      "width": 329,
+      "height": 121
+    },
+    "tower_chat": {
+      "file": "tower_chat.png",
+      "width": 154,
+      "height": 174
+    },
+    "tower_creator": {
+      "file": "tower_creator.png",
+      "width": 142,
+      "height": 174
+    },
+    "avatar_chat": {
+      "file": "avatar_chat.png",
+      "width": 98,
+      "height": 102
+    },
+    "avatar_creator": {
+      "file": "avatar_creator.png",
+      "width": 105,
+      "height": 102
+    },
+    "boss_phase1": {
+      "file": "boss_phase1.png",
+      "width": 201,
+      "height": 120
+    },
+    "boss_phase2": {
+      "file": "boss_phase2.png",
+      "width": 240,
+      "height": 125
+    },
+    "boss_phase3": {
+      "file": "boss_phase3.png",
+      "width": 260,
+      "height": 126
+    },
+    "boss_legendary": {
+      "file": "boss_legendary.png",
+      "width": 237,
+      "height": 157
+    },
+    "gift_rose": {
+      "file": "gift_rose.png",
+      "width": 78,
+      "height": 84
+    },
+    "gift_crown": {
+      "file": "gift_crown.png",
+      "width": 77,
+      "height": 84
+    },
+    "gift_heart_red": {
+      "file": "gift_heart_red.png",
+      "width": 82,
+      "height": 84
+    },
+    "gift_heart_blue": {
+      "file": "gift_heart_blue.png",
+      "width": 84,
+      "height": 84
+    },
+    "gift_donut": {
+      "file": "gift_donut.png",
+      "width": 81,
+      "height": 84
+    },
+    "gift_cake": {
+      "file": "gift_cake.png",
+      "width": 82,
+      "height": 84
+    },
+    "gift_ribbon": {
+      "file": "gift_ribbon.png",
+      "width": 87,
+      "height": 84
+    },
+    "gift_puppy": {
+      "file": "gift_puppy.png",
+      "width": 78,
+      "height": 84
+    },
+    "gift_ticket": {
+      "file": "gift_ticket.png",
+      "width": 77,
+      "height": 84
+    },
+    "gift_coins": {
+      "file": "gift_coins.png",
+      "width": 82,
+      "height": 84
+    },
+    "gift_heart_magic": {
+      "file": "gift_heart_magic.png",
+      "width": 84,
+      "height": 84
+    },
+    "gift_box": {
+      "file": "gift_box.png",
+      "width": 81,
+      "height": 84
+    },
+    "gift_fireworks": {
+      "file": "gift_fireworks.png",
+      "width": 82,
+      "height": 84
+    },
+    "gift_potion": {
+      "file": "gift_potion.png",
+      "width": 87,
+      "height": 84
+    },
+    "health_boss": {
+      "file": "health_boss.png",
+      "width": 283,
+      "height": 73
+    },
+    "health_chat": {
+      "file": "health_chat.png",
+      "width": 284,
+      "height": 66
+    },
+    "health_creator": {
+      "file": "health_creator.png",
+      "width": 232,
+      "height": 66
+    },
+    "health_xp": {
+      "file": "health_xp.png",
+      "width": 270,
+      "height": 53
+    },
+    "health_timer": {
+      "file": "health_timer.png",
+      "width": 229,
+      "height": 53
+    },
+    "medal_star": {
+      "file": "medal_star.png",
+      "width": 91,
+      "height": 65
+    },
+    "medal_trophy": {
+      "file": "medal_trophy.png",
+      "width": 81,
+      "height": 65
+    },
+    "medal_crown": {
+      "file": "medal_crown.png",
+      "width": 85,
+      "height": 65
+    },
+    "medal_gem": {
+      "file": "medal_gem.png",
+      "width": 85,
+      "height": 65
+    },
+    "medal_skull": {
+      "file": "medal_skull.png",
+      "width": 89,
+      "height": 65
+    },
+    "medal_shield": {
+      "file": "medal_shield.png",
+      "width": 97,
+      "height": 65
+    },
+    "ability_defense": {
+      "file": "ability_defense.png",
+      "width": 76,
+      "height": 81
+    },
+    "ability_attack": {
+      "file": "ability_attack.png",
+      "width": 77,
+      "height": 81
+    },
+    "ability_bonus": {
+      "file": "ability_bonus.png",
+      "width": 74,
+      "height": 81
+    },
+    "ability_heal": {
+      "file": "ability_heal.png",
+      "width": 78,
+      "height": 81
+    },
+    "ability_time": {
+      "file": "ability_time.png",
+      "width": 64,
+      "height": 81
+    },
+    "ability_fire": {
+      "file": "ability_fire.png",
+      "width": 64,
+      "height": 81
+    },
+    "level_1": {
+      "file": "level_1.png",
+      "width": 60,
+      "height": 69
+    },
+    "level_10": {
+      "file": "level_10.png",
+      "width": 66,
+      "height": 69
+    },
+    "level_25": {
+      "file": "level_25.png",
+      "width": 67,
+      "height": 69
+    },
+    "level_50": {
+      "file": "level_50.png",
+      "width": 68,
+      "height": 69
+    },
+    "level_75": {
+      "file": "level_75.png",
+      "width": 70,
+      "height": 69
+    },
+    "level_100": {
+      "file": "level_100.png",
+      "width": 78,
+      "height": 69
+    },
+    "badge_hero": {
+      "file": "badge_hero.png",
+      "width": 118,
+      "height": 76
+    },
+    "badge_mvp": {
+      "file": "badge_mvp.png",
+      "width": 116,
+      "height": 76
+    },
+    "badge_legend": {
+      "file": "badge_legend.png",
+      "width": 114,
+      "height": 76
+    },
+    "badge_king": {
+      "file": "badge_king.png",
+      "width": 113,
+      "height": 76
+    },
+    "raffle_ticket": {
+      "file": "raffle_ticket.png",
+      "width": 136,
+      "height": 83
+    },
+    "raffle_present": {
+      "file": "raffle_present.png",
+      "width": 129,
+      "height": 94
+    },
+    "raffle_wheel": {
+      "file": "raffle_wheel.png",
+      "width": 124,
+      "height": 94
+    },
+    "background_original": {
+      "file": "background_original.png",
+      "width": 83,
+      "height": 77
+    },
+    "background_neon": {
+      "file": "background_neon.png",
+      "width": 83,
+      "height": 77
+    },
+    "background_gold": {
+      "file": "background_gold.png",
+      "width": 85,
+      "height": 77
+    },
+    "background_dark": {
+      "file": "background_dark.png",
+      "width": 87,
+      "height": 77
+    },
+    "background_ice": {
+      "file": "background_ice.png",
+      "width": 85,
+      "height": 77
+    },
+    "background_fire": {
+      "file": "background_fire.png",
+      "width": 94,
+      "height": 77
+    },
+    "icon_battle": {
+      "file": "icon_battle.png",
+      "width": 108,
+      "height": 89
+    },
+    "icon_boss": {
+      "file": "icon_boss.png",
+      "width": 105,
+      "height": 89
+    },
+    "icon_tournament": {
+      "file": "icon_tournament.png",
+      "width": 102,
+      "height": 89
+    },
+    "icon_missions": {
+      "file": "icon_missions.png",
+      "width": 103,
+      "height": 89
+    },
+    "icon_events": {
+      "file": "icon_events.png",
+      "width": 102,
+      "height": 89
+    },
+    "icon_raffle": {
+      "file": "icon_raffle.png",
+      "width": 103,
+      "height": 89
+    },
+    "icon_ranking": {
+      "file": "icon_ranking.png",
+      "width": 103,
+      "height": 89
+    },
+    "icon_statistics": {
+      "file": "icon_statistics.png",
+      "width": 103,
+      "height": 89
+    },
+    "icon_settings": {
+      "file": "icon_settings.png",
+      "width": 56,
+      "height": 89
+    },
+    "button_start": {
+      "file": "button_start.png",
+      "width": 125,
+      "height": 56
+    },
+    "button_stop": {
+      "file": "button_stop.png",
+      "width": 120,
+      "height": 56
+    },
+    "button_next": {
+      "file": "button_next.png",
+      "width": 146,
+      "height": 56
+    },
+    "button_ability": {
+      "file": "button_ability.png",
+      "width": 138,
+      "height": 56
+    },
+    "button_vote": {
+      "file": "button_vote.png",
+      "width": 120,
+      "height": 56
+    },
+    "button_poll": {
+      "file": "button_poll.png",
+      "width": 122,
+      "height": 56
+    },
+    "button_exit": {
+      "file": "button_exit.png",
+      "width": 93,
+      "height": 56
+    },
+    "live_indicator": {
+      "file": "live_indicator.png",
+      "width": 101,
+      "height": 46
+    },
+    "live_viewers": {
+      "file": "live_viewers.png",
+      "width": 113,
+      "height": 47
+    },
+    "live_likes": {
+      "file": "live_likes.png",
+      "width": 110,
+      "height": 47
+    },
+    "live_shares": {
+      "file": "live_shares.png",
+      "width": 108,
+      "height": 47
+    },
+    "live_bell": {
+      "file": "live_bell.png",
+      "width": 60,
+      "height": 47
+    }
+  },
+  "note": "Sprites cropped from concept art; may retain labels, dark interior or glow. Existing 15 gift assets are preserved and unchanged."
+}

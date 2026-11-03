@@ -1,0 +1,22 @@
+{
+  "version": "11.3",
+  "layers": [
+    "sky",
+    "castles",
+    "floor",
+    "fog"
+  ],
+  "lightning_frames": 6,
+  "assets": {
+    "livepulse_visual/v113_sky.png": "97e62ae22548a798f15826299bd98a2785d0f9e2784144a0250f72eb2c3fdde5",
+    "livepulse_visual/v113_castles.png": "5086d5ad9f1832c34f2c996d080ae08236826e9d2ccf5d003c05012fd7c1cc95",
+    "livepulse_visual/v113_floor.png": "6cab6bc904e1c7ca3730e756e600efb6d1f09fb59eedfd099ed6739c66ae90d6",
+    "livepulse_visual/v113_fog.png": "7fa3cf19ceaf53e21e7ad832683a0fcaf51d542a3bd71eb7e6454e647381ff6e",
+    "livepulse_visual/v113_lightning_0.png": "596b669006a32459478d617878656c3e5beae6ce29f47c61f6100716e9f13f17",
+    "livepulse_visual/v113_lightning_1.png": "e871fa03aa8d49d61edd65cacfd2c805850c99190e8ee98f680a6d3939bea8ae",
+    "livepulse_visual/v113_lightning_2.png": "1abf3b79b0b23ac23957c54be0db3ce870f48be43763942e96554e77397c1d92",
+    "livepulse_visual/v113_lightning_3.png": "0ffdc34ef3f28dae0633563222e55199efbefd084ddcd0f0bb0338ce835ae44b",
+    "livepulse_visual/v113_lightning_4.png": "5efa9c40f144370cd3d35ea034f4aa2ed5911ba75164366e7c81ce33a6a86a55",
+    "livepulse_visual/v113_lightning_5.png": "794be027f9a9a7252b42f7ce84905fc71c8a5750177c5a9c4e59498c6ce6e9ad"
+  }
+}

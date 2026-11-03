@@ -1,0 +1,12 @@
+{
+  "version": "11.6",
+  "base": "11.5",
+  "presets": {
+    "economico": "~1 sprite frame/s, no heavy FX or animated fog",
+    "equilibrado": "~2 frames/s, 6 concurrent particles max",
+    "cinematografico": "~4 frames/s, 14 concurrent particles max"
+  },
+  "visibility_pause": true,
+  "warm_cache_max_images": 10,
+  "source_sha256": "a590cf754fd439eb402792dee7ddef63a856067bae34abcb38e84be9fb0162b0"
+}

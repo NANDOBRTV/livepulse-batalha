@@ -1,0 +1,4 @@
+LivePulse V11.5 — Combate cinematográfico
+Efeitos CSS/JS de projéteis, explosões, escudos, destruição e vitória acionados por eventos reais do jogo. Modo econômico e preferência por movimento reduzido desativam os novos efeitos. A lógica de batalha da V11.4 foi preservada.
+
+Instalação: colocar ZIP na pasta Downloads do Android, extrair instalar_v115.py na mesma pasta e executar python ~/storage/downloads/instalar_v115.py. Executar node ~/livepulse/batalha.js --demo dentro da pasta livepulse. Backup automático. Testar visualmente no Android antes de LIVE real.

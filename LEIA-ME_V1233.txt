@@ -1,0 +1,1 @@
+V12.3.3: cartões temporários de presentes reposicionados em zona central inferior, abaixo das torres, sem sobrepor colunas laterais. Mantém sprites, lógica e funções da V12.3.2. Instale com instalar_v1233.py e teste /overlay?v=1233.

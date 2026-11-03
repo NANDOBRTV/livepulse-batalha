@@ -1,0 +1,4 @@
+LIVEPULSE V11 — ILUSTRACOES ORIGINAIS INDEPENDENTES
+79 imagens novas: 18 chefao, 12 dragoes, 48 torres e 1 cenario.
+Nao sao recortes da imagem de referencia. Arte vetorial original estilizada; nao e identica a referencia cinematografica. Preserva codigo de batalha da V10.3.
+Instalar: unzip -o ~/storage/downloads/LivePulse_V11_Arte_Original_Animada.zip instalar_v11.py -d ~/storage/downloads && python ~/storage/downloads/instalar_v11.py

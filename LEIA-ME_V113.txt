@@ -1,0 +1,1 @@
+LivePulse V11.3 - cenário original independente em camadas: céu, montanhas, castelos, piso com perspectiva, névoa e 6 raios. Preserva sistema de batalha da V11.2. Arte vetorial estilizada; não é renderização 3D. Instale com python instalar_v113.py. Backup automático. Teste: node batalha.js --demo.

@@ -1,0 +1,1 @@
+LivePulse V11.4 - Interface definitiva. Layout mobile-first: placares, barras de vida, 14 presentes sem quadrados, painéis de batalha. Preserva lógica de pontos, eventos e combate da V11.3. Instalador cria backup. Coloque ZIP em Downloads e execute python instalar_v114.py. DEMO: node batalha.js --demo. A composição final no Android precisa ser verificada no aparelho.

@@ -1,0 +1,118 @@
+{
+  "version": "10.3",
+  "source": "clean v101 sprites",
+  "assets": {
+    "livepulse_visual/v103_boss_1_0.png": {
+      "bytes": 50398,
+      "sha256": "72798470d78292326b3f51a90ab7e8bd74a3827677cb5ffc511cfecc1d253723"
+    },
+    "livepulse_visual/v103_boss_1_1.png": {
+      "bytes": 56696,
+      "sha256": "700354c9eae972443d770341f05fe1d64c63948e4f7cc7e3fac7e990d412f602"
+    },
+    "livepulse_visual/v103_boss_1_2.png": {
+      "bytes": 59578,
+      "sha256": "646e5b3a85290393bdd1ae3229202ca74b820acafe4179f21134b05ff7792a46"
+    },
+    "livepulse_visual/v103_boss_1_3.png": {
+      "bytes": 53423,
+      "sha256": "d08ab5569d3d4250651adf836f5572ab3f779d71349bc9816ff81ffe5779e7ce"
+    },
+    "livepulse_visual/v103_boss_1_4.png": {
+      "bytes": 53191,
+      "sha256": "573b4d6ffd4cee9bdbe9c8ea285967dcd5cd4cc18dfc669367e83536f24db882"
+    },
+    "livepulse_visual/v103_boss_1_5.png": {
+      "bytes": 53191,
+      "sha256": "573b4d6ffd4cee9bdbe9c8ea285967dcd5cd4cc18dfc669367e83536f24db882"
+    },
+    "livepulse_visual/v103_boss_2_0.png": {
+      "bytes": 57376,
+      "sha256": "9af69c55c3243a659daf9ede0bc2d26c3c90b0da451581cdba979b28f917fc18"
+    },
+    "livepulse_visual/v103_boss_2_1.png": {
+      "bytes": 61948,
+      "sha256": "e6827dc4b5846dff5bfd8166b1066ef12e29bd5fdcd6371047200936e673e521"
+    },
+    "livepulse_visual/v103_boss_2_2.png": {
+      "bytes": 65336,
+      "sha256": "2c82be9c1e4b4d686141c0738e4609f662431711d8b30e9de710a07a4c89affc"
+    },
+    "livepulse_visual/v103_boss_2_3.png": {
+      "bytes": 60370,
+      "sha256": "2d8fd1326d96f42e7938645d49a27e30241ab5abbe999d17fa0f2c81fd40473e"
+    },
+    "livepulse_visual/v103_boss_2_4.png": {
+      "bytes": 60331,
+      "sha256": "8cc981c5c545d6c96ba94c59e50fe25d5a0b05e0f2498a9ce3c996841cbb5581"
+    },
+    "livepulse_visual/v103_boss_2_5.png": {
+      "bytes": 60331,
+      "sha256": "8cc981c5c545d6c96ba94c59e50fe25d5a0b05e0f2498a9ce3c996841cbb5581"
+    },
+    "livepulse_visual/v103_boss_3_0.png": {
+      "bytes": 53148,
+      "sha256": "711cf6c34670b2e9200828560f5c093851992c85f90935f9875a04b54a7f8986"
+    },
+    "livepulse_visual/v103_boss_3_1.png": {
+      "bytes": 67794,
+      "sha256": "2da9b4328d6ad500eea048826a57757fdaec4724b060862e1172b8290034fdeb"
+    },
+    "livepulse_visual/v103_boss_3_2.png": {
+      "bytes": 72762,
+      "sha256": "ad952d9721a7415ba2db2197dc1aa85c6a30b3865c06fe3b0a443a55162f3fd6"
+    },
+    "livepulse_visual/v103_boss_3_3.png": {
+      "bytes": 58228,
+      "sha256": "69aed294bd527fc94269882367cabb304b8c299c435786c03af514140092ee44"
+    },
+    "livepulse_visual/v103_boss_3_4.png": {
+      "bytes": 65385,
+      "sha256": "9da6ccc40e843f1f291337ee7e91839f73938440dc24d1fe3d5959b57fe7c961"
+    },
+    "livepulse_visual/v103_boss_3_5.png": {
+      "bytes": 65385,
+      "sha256": "9da6ccc40e843f1f291337ee7e91839f73938440dc24d1fe3d5959b57fe7c961"
+    },
+    "livepulse_visual/v103_tower_chat_idle.png": {
+      "bytes": 69882,
+      "sha256": "9805cf7f9cf4ea638af6799c8f7b3729f2bea2673d12b81e7f168676f4acd901"
+    },
+    "livepulse_visual/v103_tower_chat_hurt.png": {
+      "bytes": 68809,
+      "sha256": "0d1c42ec17b4945ded1f1c4669895b1d001a3fe5fab6b2e385e86cddfe149b3e"
+    },
+    "livepulse_visual/v103_tower_chat_shield.png": {
+      "bytes": 69222,
+      "sha256": "554c08c0765936271482bd9dd39eb4bfd161954a0cb4352b8de1f530a1195621"
+    },
+    "livepulse_visual/v103_tower_chat_critical.png": {
+      "bytes": 69975,
+      "sha256": "6c612e482aee00b88adcf1fd83e7b84b3b4304cd0485c7b87dd829b3710a2468"
+    },
+    "livepulse_visual/v103_dragon_chat.png": {
+      "bytes": 16987,
+      "sha256": "8af265dedc1ac8dae6cedd253d577dcf4884192c52eb97d0dcb5d7ece3560591"
+    },
+    "livepulse_visual/v103_tower_creator_idle.png": {
+      "bytes": 71468,
+      "sha256": "ec51225c589a0feb48c593d72cfb99e0bf8f376d97c115f47ab3cb1d7af5a320"
+    },
+    "livepulse_visual/v103_tower_creator_hurt.png": {
+      "bytes": 70184,
+      "sha256": "1ff27a5cb706d3bb80e5af07385945253522ca08adc622846351fd63b70118cf"
+    },
+    "livepulse_visual/v103_tower_creator_shield.png": {
+      "bytes": 70730,
+      "sha256": "8ad1916809513c52bcefa73b5732be10ff7802585c30dd5d13e526ff6f8e2c9f"
+    },
+    "livepulse_visual/v103_tower_creator_critical.png": {
+      "bytes": 71347,
+      "sha256": "396ea0dd15bd124c848b821c9401671b11c74be0809b2f237df037cdc557965e"
+    },
+    "livepulse_visual/v103_dragon_creator.png": {
+      "bytes": 20780,
+      "sha256": "0e014747a0bb9608510d650783707107b6f082ab149222fee79478eeec07abdc"
+    }
+  }
+}

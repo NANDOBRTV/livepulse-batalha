@@ -1,0 +1,10 @@
+LivePulse V12.9.4.1 — Rosquinha ofensiva (−20 pontos no adversario)
+
+- Rosquinha enviada pelo CHAT: -20 no CRIADOR, CHAT nao recebe pontos.
+- Rosquinha enviada pelo CRIADOR: -20 no CHAT, CRIADOR nao recebe pontos.
+- Presente repetido em combos respeita o teto de pontos por evento.
+- A pontuacao minima do adversario e zero.
+- Outros presentes e o combate se mantem.
+- Configuracao antiga com Rosquinha +20 e automaticamente normalizada na memoria para -20; o backup protege as configuracoes anteriores.
+- Use o instalador instalar_v12941.py. Arquivo ZIP pode ter nome diferente; instalador identifica por manifesto.
+- Testes sem LIVE real: python testar_v12941.py

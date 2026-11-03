@@ -1,0 +1,8 @@
+LivePulse V12.3.2 — Acabamento visual Android
+Base: V12.3.1. Preserva todos os recursos de batalha, TikTok LIVE e ativos.
+Correção: notificações flutuantes v52gift ficam dentro das faixas laterais de 14%, sem encobrir as torres. Texto responsivo e cartões compactos.
+Instalar: unzip -o ~/storage/downloads/LivePulse_V12_3_2_Acabamento_Visual.zip instalar_v1232.py -d ~/storage/downloads && python ~/storage/downloads/instalar_v1232.py
+Iniciar: cd ~/livepulse && node batalha.js --demo
+Abrir: http://127.0.0.1:3001/overlay?v=1232
+Teste: cd ~/livepulse && python testar_v122.py (servidor parado)
+Aviso: confirmação visual final deve ser feita no Chrome Android.

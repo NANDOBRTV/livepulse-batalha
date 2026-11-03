@@ -1,0 +1,2 @@
+LivePulse V11.2 - Dragoes e torres animados, arte vetorial original independente.
+Instale com python instalar_v112.py (ZIP na pasta Downloads). Executar node batalha.js --demo. Backup automatico. Nao representa renderizacao 3D cinematografica nem teste em LIVE real.

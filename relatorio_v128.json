@@ -1,0 +1,18 @@
+{
+  "version": "12.8",
+  "groupsPassed": 2,
+  "groupsTotal": 2,
+  "elapsedSeconds": 35.9,
+  "allPassed": true,
+  "groups": [
+    {
+      "suite": "Legado V12.7 — batalha, painel, TikTok simulado, desempenho e arte",
+      "ok": true
+    },
+    {
+      "suite": "Integracao geral V12.8 — privacidade, API, persistencia e recuperacao",
+      "ok": true
+    }
+  ],
+  "scope": "Node.js offline, sem LIVE real, sem medicao de FPS fisico no Android"
+}

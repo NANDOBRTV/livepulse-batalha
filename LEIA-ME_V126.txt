@@ -1,0 +1,55 @@
+LivePulse V12.6 — Otimização Android (02/11/2026)
+=================================================
+Base: LivePulse V12.5 — Sistema TikTok Offline.
+Todos os elementos de batalha, painel administrativo /painel, overlay /overlay,
+integração simulada do TikTok e presets visuais são mantidos.
+
+RECURSOS DESTA ATUALIZAÇÃO
+------------------------
+1. Sprite scheduler adaptativo: frequências alvo de ~5,5 quadros de sprite por segundo
+   no perfil Cinematográfico, ~3 no Equilibrado, ~1 no Econômico. Isso NÃO representa
+   FPS total da tela e pode diminuir se o aparelho estiver lento ou em segundo plano.
+2. Trabalho desnecessário reduzido: configurações do overlay não são reconstruídas
+   se não mudaram; /state é consultado só como fallback quando a conexão SSE está
+   sem mensagens, e ao retornar para a aba.
+3. Cache HTTP com ETag/304 e TTL para PNGs de personagens e presentes, reduzindo
+   transferências repetidas no navegador; novas versões do código HTML nunca são
+   armazenadas em cache. Cache de pré-carregamento de imagens limitado a 12 entradas.
+4. Heartbeats SSE (20 s normalmente), com limpeza das conexões encerradas.
+5. Diagnóstico /health -> performance (asset200, asset304, sseHeartbeats,
+   eventLoopLagMs, eventLoopLagMaxMs). O formato da rota antiga continua disponível.
+6. Testes isolados de 12 segundos ou prolongados, crash simulado e recuperação.
+
+INSTALAÇÃO NO TERMUX (com servidor anterior parado: Ctrl+C)
+------------------------------------------------------------
+cd ~/livepulse
+unzip -o ~/storage/downloads/LivePulse_V12_6_Otimizacao_Android.zip instalar_v126.py -d ~/storage/downloads
+python ~/storage/downloads/instalar_v126.py
+node batalha.js --demo
+
+Painel: http://127.0.0.1:3001/painel?v=126
+Arena:  http://127.0.0.1:3001/overlay?v=126
+Diagnóstico: http://127.0.0.1:3001/health
+Simulação TikTok SEM LIVE real: node batalha.js --sim-tiktok
+
+TESTES (com o servidor parado ou aberto: utilizam uma porta local aleatória)
+---------------------------------------------------------------------------
+cd ~/livepulse
+python testar_v126.py
+
+TESTE PROLONGADO OPCIONAL (10 minutos)
+---------------------------------------
+cd ~/livepulse
+LIVEPULSE_PERF_SECONDS=600 python testar_performance_v126.py
+O arquivo relatorio_performance_v126.json contém tempo, memória e resultados da
+execução no seu próprio aparelho. O ambiente de testes aqui não mede FPS físico.
+Pode aumentar LIVEPULSE_PERF_SECONDS até 1800 (30 minutos).
+
+SEGURANÇA E COMPATIBILIDADE
+--------------------------
+* O instalador verifica SHA-256 de todos os arquivos do manifesto.
+* Backup em ~/livepulse/backup_antes_v126_... antes de substituir arquivos.
+* Chave admin, configuração, dados das rodadas e ícones customizados preservados.
+* Se a instalação falhar, restauração dos arquivos alterados é tentada.
+* Nenhuma conexão com LIVE real foi feita nesta versão.
+* Confirme o resultado visual e consumo de bateria no seu Android.

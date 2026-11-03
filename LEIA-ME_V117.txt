@@ -1,0 +1,4 @@
+LivePulse V11.7 — revisão visual
+Correções de posicionamento e limites visuais dos presentes, torres, chefões, dragões e placares; cenário em camada de fundo; checagem de sete presentes por equipe e tamanho da arena (window.v117Audit no navegador).
+Preserva a lógica do jogo e os modos de desempenho V11.6.
+Instalação: coloque o ZIP em Downloads e execute python instalar_v117.py. Backup automático. Teste: node batalha.js --demo. Verifique o resultado no Android antes de LIVE real.

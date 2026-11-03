@@ -1,0 +1,1 @@
+V12.3.1: colunas laterais de presentes com cards legiveis, icones compactos e nomes em ate duas linhas; evita sobreposicoes com o cenario e preserva toda a logica V12.3. Instalar com instalar_v1231.py; executar node batalha.js --demo.

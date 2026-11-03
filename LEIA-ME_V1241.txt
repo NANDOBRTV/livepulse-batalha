@@ -1,0 +1,36 @@
+LIVEPULSE V12.4.1 - CORREÇÃO DA REGRESSÃO DE BATALHA
+
+Causa do problema no Termux:
+O teste legado testar_v122.py abria uma instância temporária do jogo, mas
+consultava a porta 3001 fixa. Se a LivePulse principal já estivesse aberta,
+o teste conversava com o servidor principal. Depois tentava ler a chave
+administrativa da pasta temporária e encontrava FileNotFoundError.
+
+Correção:
+- Teste de batalha utiliza porta localhost aleatória, isolada do jogo real.
+- Espera explícita pela chave administrativa da instância temporária.
+- A bateria completa continua rodando com: python testar_v124.py
+- Painel V12.4 e batalha.js NÃO foram modificados.
+- Preserve todos os recursos e estados da V12.4.
+- Instalador valida SHA-256, faz backup automático e tenta restaurar arquivos
+  anteriores caso haja erro durante a cópia.
+- Nenhuma transmissão TikTok real é utilizada.
+
+INSTALAÇÃO (com servidor parado, Ctrl+C):
+  cd ~/livepulse
+  unzip -o ~/storage/downloads/LivePulse_V12_4_1_Correcao_Regressao_Android.zip instalar_v1241.py -d ~/storage/downloads
+  python ~/storage/downloads/instalar_v1241.py
+
+TESTES:
+  cd ~/livepulse
+  python testar_v124.py
+
+EXECUTAR JOGO:
+  node batalha.js --demo
+  Painel: http://127.0.0.1:3001/painel?v=1241
+  Arena: http://127.0.0.1:3001/overlay?v=1241
+
+TESTE COM JOGO ABERTO:
+  Agora os testes usam portas isoladas e podem executar enquanto a porta 3001
+  está ocupada. Para preservar recursos no Android, é preferível rodá-los
+  com o jogo parado.

@@ -1,0 +1,24 @@
+LivePulse V12.0 — Versao consolidada (Android/Termux)
+Base: V11.9. Preserva placares, dragões, torres, chefões, 14 presentes, cenário, combate, efeitos, modos de desempenho, API e integração TikTok.
+
+INSTALACAO
+1. Pare o servidor atual (Ctrl+C).
+2. Copie LivePulse_V12_0_Consolidada.zip para Downloads.
+3. Execute:
+   cd ~/livepulse
+   unzip -o ~/storage/downloads/LivePulse_V12_0_Consolidada.zip instalar_v120.py -d ~/storage/downloads
+   python ~/storage/downloads/instalar_v120.py
+   node batalha.js --demo
+4. Acesse http://127.0.0.1:3001/overlay
+5. Para testar: pare o servidor e execute python testar_v120.py
+
+SEGURANCA
+- Verificacao SHA256 de todos os arquivos e sintaxe do Node antes de alterar a instalacao.
+- Backup automatico de codigo, estado, configuracao, arquivos de teste e assets anteriores.
+- Substituicao por arquivo temporario + rename, com tentativa de rollback em falhas.
+- Configuracoes e estado preservados. Icones personalizados ja existentes nao sao sobrescritos.
+- Execute a instalacao com espaco livre suficiente para extracao e backup.
+
+VALIDACAO
+- Testes automatizados em modo DEMO, sem autenticar em LIVE real.
+- Validacao visual no Chrome Android, desempenho prolongado e eventos reais do TikTok ainda necessitam teste no dispositivo.

@@ -1,0 +1,22 @@
+{
+  "version": "11.5",
+  "base": "11.4",
+  "effects": [
+    "projectiles",
+    "explosions",
+    "shield",
+    "tower destruction",
+    "victory",
+    "skills"
+  ],
+  "event_bindings": [
+    "combatHit",
+    "combatAttack",
+    "combatShield",
+    "combatTowerDown",
+    "combatVictory",
+    "skill"
+  ],
+  "source_sha256": "db5e6d7a4b131c7c66555df6cfa67d55e034e367ae52d5b51a1874fc005a108a",
+  "notes": "visual effects only; reduced-motion and economic mode disable them"
+}

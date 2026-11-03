@@ -1,0 +1,46 @@
+LIVEPULSE V12.7 — VISUAL CINEMATOGRAFICO DEFINITIVO (OFFLINE)
+Base: V12.6. Preserva os sistemas de pontuacao, batalha, TikTok simulado, painel administrativo e 14 presentes.
+
+NOVIDADES
+- 13 PNGs RGBA independentes (nunca uma imagem unica da arena):
+  dois halos dos dragoes, tres selos de chefao, duas auras das torres,
+  raios atmosfericos, nevoa, dois impactos, escudo e brilho de vitoria.
+- Chefao alterna automaticamente o selo nas tres fases.
+- Torres refletem visualmente escudo e estado critico, sem alterar HP.
+- Ataques, defesa e vitoria disparam lampejos com limite e limpeza temporizada.
+- Perfis visual: Economico desliga novos efeitos; Equilibrado usa luz suave
+  estaticamente; Cinematografico permite nevoa e selo pulsantes.
+- prefers-reduced-motion e aba oculta respeitados.
+- Nenhum novo loop permanente de animacoes, mantendo scheduler adaptativo V12.6.
+
+INSTALACAO TERMUX (ZIP deve estar em ~/storage/downloads)
+cd ~/livepulse
+unzip -o ~/storage/downloads/LivePulse_V12_7_Visual_Cinematografico_Definitivo.zip instalar_v127.py -d ~/storage/downloads
+python ~/storage/downloads/instalar_v127.py
+node batalha.js --demo
+
+ARENA: http://127.0.0.1:3001/overlay?v=127
+PAINEL: http://127.0.0.1:3001/painel?v=127
+Para testar o visual completo, escolha o modo Cinematografico no painel administrativo.
+SIMULACAO TIKTOK SEM LIVE: node batalha.js --sim-tiktok
+
+TESTES OFFLINE (pare o servidor principal se desejar, embora testes usem portas isoladas):
+cd ~/livepulse
+python testar_v127.py
+Para apenas os novos recursos: python testar_visual_v127.py
+Diagnosticos: http://127.0.0.1:3001/health
+
+SEGURANCA/CONTINUIDADE
+- O instalador verifica hashes SHA256, valida sintaxe Node do servidor e overlay,
+  cria um backup em ~/livepulse/backup_antes_v127_*, copia atomicamente e tenta
+  restaurar os arquivos caso uma copia falhe.
+- Preserva arquivos de configuracao, estado e chave administrativa.
+- Preserva icones customizados existentes em batalha_assets.
+- O codigo original do TikTok nao foi conectado a uma LIVE real em nenhum teste.
+- Testes de navegador no Android, FPS real, temperatura e latencia TikTok real pendentes.
+
+DETALHES DA ARTE
+O brilho e a profundidade sao camadas 2D sobre sprites existentes; NAO se trata de
+modelos tridimensionais. Todos os PNGs originais permanecem no pacote.
+Ferramenta opcional: ferramentas/gerar_arte_v127.py (depende de Pillow e NumPy; nao
+necessaria para instalar ou executar o jogo).

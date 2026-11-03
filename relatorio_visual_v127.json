@@ -1,0 +1,258 @@
+{
+  "version": "12.7",
+  "scope": "Arte independente, integridade PNG, sintaxe Node, HTTP DEMO offline (sem TikTok real; sem teste visual fisico Android)",
+  "passed": 50,
+  "total": 50,
+  "checks": [
+    {
+      "name": "Motor de batalha mantido",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML em camadas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Chefao com fases 1, 2 e 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Auras independentes dos dragoes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Escudo e estado critico das torres",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Eventos visuais integrados ao combate",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Modos de desempenho preservados",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Painel administrativo preservado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "TikTok simulado preservado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "DOM de arena original presente",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Versao de diagnostico atualizada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JavaScript do servidor valido",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JavaScript do overlay valido",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_dragon_chat_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_dragon_creator_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_boss_sigil_1.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_boss_sigil_2.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_boss_sigil_3.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_tower_chat_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_tower_creator_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_depth_rays.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_ground_mist.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_impact_chat.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_impact_creator.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_shield_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PNG RGBA independente v127_victory_burst.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Camadas nao bloqueiam toques",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Economia desliga efeitos V12.7",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Movimento reduzido respeitado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Sem loop visual adicional",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Servidor DEMO isolado inicia",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Overlay V12.7 entregue",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Painel administrativo continua acessivel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Health V12.7 ativo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_dragon_chat_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_dragon_creator_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_boss_sigil_1.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_boss_sigil_2.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_boss_sigil_3.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_tower_chat_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_tower_creator_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_depth_rays.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_ground_mist.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_impact_chat.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_impact_creator.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_shield_aura.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP recurso v127_victory_burst.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Cache visual ETag funciona",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Rodada DEMO segue ativa",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pontuacao DEMO alimentada",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "v127_boss_sigil_1.png": {
+    "width": 360,
+    "height": 360,
+    "sha256": "da836870b9aa95c8eb2a41bb41f76e62ca406134eb80255919f9f132dcdddc82",
+    "bytes": 26774
+  },
+  "v127_boss_sigil_2.png": {
+    "width": 360,
+    "height": 360,
+    "sha256": "5cfccae42ad163883ef4e9f6fcff11f3673a7ac5742aad6730cf7e0c9e6bea2c",
+    "bytes": 28019
+  },
+  "v127_boss_sigil_3.png": {
+    "width": 360,
+    "height": 360,
+    "sha256": "a9b339d22f77f5cb643b85ea1424109ad503e68fc8668fcbe1ab5a57e0ae413f",
+    "bytes": 28852
+  },
+  "v127_depth_rays.png": {
+    "width": 660,
+    "height": 930,
+    "sha256": "b68f3c1de0d1248236422a333f94f4941dfd4181c05ba0b3216085cad8429673",
+    "bytes": 171822
+  },
+  "v127_dragon_chat_aura.png": {
+    "width": 330,
+    "height": 240,
+    "sha256": "22d97bcb805458bbf69500ea6a47271dc4b08ef810d1f3a43ffe869a64ed5fb9",
+    "bytes": 44897
+  },
+  "v127_dragon_creator_aura.png": {
+    "width": 330,
+    "height": 240,
+    "sha256": "4e6f80c57db5df4f17c91b2fc2bf83c33c0a618c276a9109b9d0967efb5b5cb9",
+    "bytes": 21999
+  },
+  "v127_ground_mist.png": {
+    "width": 660,
+    "height": 290,
+    "sha256": "b95c1548c026cec71d22da02bfe71d9dbe699142eea95740d39d48da2e152147",
+    "bytes": 61593
+  },
+  "v127_impact_chat.png": {
+    "width": 320,
+    "height": 320,
+    "sha256": "530a7926fdb988705fda0635648ead0804d032c07aeb466f2f74fc27d6501c8c",
+    "bytes": 54841
+  },
+  "v127_impact_creator.png": {
+    "width": 320,
+    "height": 320,
+    "sha256": "a4700fbc3f2ddc9007caf5d9ffb0fed8c9962b6f5cd3ae76f4b18cc444932dc5",
+    "bytes": 37407
+  },
+  "v127_shield_aura.png": {
+    "width": 300,
+    "height": 300,
+    "sha256": "01d431bf8f80036b3fff1b41411065d94c0063296e2bb342047e3b137210da5e",
+    "bytes": 22000
+  },
+  "v127_tower_chat_aura.png": {
+    "width": 300,
+    "height": 300,
+    "sha256": "00b1b2bc10164ea291ca20807c547f392711751479a88320b4ebe2f7f600d876",
+    "bytes": 24526
+  },
+  "v127_tower_creator_aura.png": {
+    "width": 300,
+    "height": 300,
+    "sha256": "0dbdbdb8dd688bb42fd1abdda7ef87fe1882eb12daf5731d88468e03b1eb233b",
+    "bytes": 26444
+  },
+  "v127_victory_burst.png": {
+    "width": 420,
+    "height": 420,
+    "sha256": "431ddab7f9ef437e8a572a21bb5e0d510327a2dec9457bc888da70d4f678999e",
+    "bytes": 98900
+  }
+}

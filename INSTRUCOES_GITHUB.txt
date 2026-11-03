@@ -1,0 +1,5 @@
+PACOTE PREPARADO PARA GITHUB
+- O ZIP completo da V12.9.4.1 foi copiado sem arquivos de chave/configuração privados.
+- Selecione o repositório de destino com cuidado: "torre-live" e "tiktok-live-arena" já existem e são projetos diferentes.
+- O script PUBLICAR_GITHUB_TERMUX.sh precisa de Git autenticado pelo usuário; não altera o branch main existente.
+- Nunca salve um token GitHub no repositório nem cole credenciais em conversas.

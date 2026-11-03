@@ -1,0 +1,1 @@
+LivePulse V11.1: 3 chefões originais (fases) x 5 ações x 8 quadros = 120 PNGs transparentes. Instalação com backup, não altera configs. Teste DEMO: node batalha.js --demo. A arte é vetorial estilizada, não fotorrealista nem idêntica à referência.\n

@@ -1,0 +1,224 @@
+{
+  "version": "12.8",
+  "scope": "Testes Node.js isolados OFFLINE, sem login TikTok e sem medicao fisica de Android",
+  "passed": 54,
+  "total": 54,
+  "checks": [
+    {
+      "name": "Node instalado",
+      "ok": true
+    },
+    {
+      "name": "Motor Node.js sintaticamente valido",
+      "ok": true
+    },
+    {
+      "name": "JavaScript do overlay presente",
+      "ok": true
+    },
+    {
+      "name": "JavaScript do navegador sintaticamente valido",
+      "ok": true
+    },
+    {
+      "name": "Camadas de arena e controles mantidos",
+      "ok": true
+    },
+    {
+      "name": "Conector TikTok simulado preservado",
+      "ok": true
+    },
+    {
+      "name": "Apenas um temporizador de heartbeat",
+      "ok": true
+    },
+    {
+      "name": "Relatorios protegidos sem mudar rotas",
+      "ok": true
+    },
+    {
+      "name": "Marcador de porta isolavel",
+      "ok": true
+    },
+    {
+      "name": "DEMO isolado inicia sem LIVE real",
+      "ok": true
+    },
+    {
+      "name": "Chave administrativa local criada",
+      "ok": true
+    },
+    {
+      "name": "Release V12.8 publicada",
+      "ok": true
+    },
+    {
+      "name": "Modo DEMO local confirmado",
+      "ok": true
+    },
+    {
+      "name": "Preflight independente do TikTok",
+      "ok": true
+    },
+    {
+      "name": "Todos os recursos essenciais encontrados",
+      "ok": true
+    },
+    {
+      "name": "Camadas cinematicas prontas",
+      "ok": true
+    },
+    {
+      "name": "Diretorio de dados gravavel",
+      "ok": true
+    },
+    {
+      "name": "Preflight nao expos chave",
+      "ok": true
+    },
+    {
+      "name": "Preflight nao fica em cache",
+      "ok": true
+    },
+    {
+      "name": "Configuracao de partida valida",
+      "ok": true
+    },
+    {
+      "name": "Interface /overlay responde",
+      "ok": true
+    },
+    {
+      "name": "Interface /painel responde",
+      "ok": true
+    },
+    {
+      "name": "Sprites e painel integrados",
+      "ok": true
+    },
+    {
+      "name": "Links de exportacao nao perderam funcionalidade",
+      "ok": true
+    },
+    {
+      "name": "Diagnostico privado bloqueado",
+      "ok": true
+    },
+    {
+      "name": "CSV privado bloqueado",
+      "ok": true
+    },
+    {
+      "name": "Chave incorreta recusada nos relatorios",
+      "ok": true
+    },
+    {
+      "name": "Diagnostico autenticado",
+      "ok": true
+    },
+    {
+      "name": "CSV autenticado e conteudo preservado",
+      "ok": true
+    },
+    {
+      "name": "API do painel exige autenticação",
+      "ok": true
+    },
+    {
+      "name": "API do painel V12.8 com legado preservado",
+      "ok": true
+    },
+    {
+      "name": "Dados da conta admin nao vazam na API",
+      "ok": true
+    },
+    {
+      "name": "Estado da arena contém equipes e vida",
+      "ok": true
+    },
+    {
+      "name": "Config das 14 recompensas mantida",
+      "ok": true
+    },
+    {
+      "name": "Estado sem cache no navegador",
+      "ok": true
+    },
+    {
+      "name": "Comandos administrativos protegidos",
+      "ok": true
+    },
+    {
+      "name": "Configuracao administrativa protegida",
+      "ok": true
+    },
+    {
+      "name": "Comando de efeito ilegal rejeitado",
+      "ok": true
+    },
+    {
+      "name": "Modo cinematografico permanece configuravel",
+      "ok": true
+    },
+    {
+      "name": "Visual cinematografico aparece no painel",
+      "ok": true
+    },
+    {
+      "name": "PNG do chefao servido",
+      "ok": true
+    },
+    {
+      "name": "Cache PNG nao atrapalha a arena",
+      "ok": true
+    },
+    {
+      "name": "URL de traversal bloqueada",
+      "ok": true
+    },
+    {
+      "name": "Partida continua executando apos ajustes",
+      "ok": true
+    },
+    {
+      "name": "Bots em DEMO alimentam placar",
+      "ok": true
+    },
+    {
+      "name": "Pausa autenticada funciona",
+      "ok": true
+    },
+    {
+      "name": "Pausa efetivada",
+      "ok": true
+    },
+    {
+      "name": "Encerramento abrupto simulado",
+      "ok": true
+    },
+    {
+      "name": "Servidor recupera apos encerramento",
+      "ok": true
+    },
+    {
+      "name": "Pontuacao recuperada",
+      "ok": true
+    },
+    {
+      "name": "Numero da rodada recuperado",
+      "ok": true
+    },
+    {
+      "name": "Pausa recuperada",
+      "ok": true
+    },
+    {
+      "name": "Chave admin preservada no reinicio",
+      "ok": true
+    },
+    {
+      "name": "Preflight responde apos reinicio",
+      "ok": true
+    }
+  ]
+}

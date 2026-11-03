@@ -1,0 +1,1 @@
+Hotfix V12.2.1: teste de estabilidade usa porta local aleatoria isolada, evitando conflito com servidor LivePulse ja aberto. O jogo e demais arquivos permanecem os mesmos. Instale usando instalar_v1221.py. Para testar: LIVEPULSE_STRESS_SECONDS=180 python testar_estabilidade_v122.py

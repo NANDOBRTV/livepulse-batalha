@@ -1,0 +1,15 @@
+{
+  "version": "11.7",
+  "base": "11.6",
+  "changes": [
+    "explicit arena grid positioning",
+    "gift slot clipping and transparency",
+    "tower sprite sizing",
+    "boss sprite containment",
+    "dragon and scoreboard clipping",
+    "small-screen and short-screen breakpoints",
+    "visual diagnostic on load"
+  ],
+  "game_logic": "unchanged",
+  "source_sha256": "a302cee16a2d776aff18e02fa4b2927364414c96865f176cd3c3dd4433565721"
+}

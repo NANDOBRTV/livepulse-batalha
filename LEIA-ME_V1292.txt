@@ -1,0 +1,27 @@
+LIVEPULSE V12.9.2 - ANIMACOES CINEMATOGRAFICAS AVANCADAS
+
+Base: V12.9; preserva tambem os refinamentos de layout Android da V12.9.1.
+
+* Chefao: asas em camadas transparentes independentes para cada uma das 3 fases; animacao de bater de asas, impacto e derrota.
+* Chefao: transicao de fase com selos magicos, acionada por evento, sem nova busca permanente.
+* Dragao: avancos de ataque na HUD sincronizados com o ataque de combate.
+* Torres: fragmentos por equipe e efeito de desmoronamento ao perder a torre.
+* Ataques: rastros vermelhos/azuis independentes, eventos acionados por SSE.
+* Acessibilidade: desativa animacoes decorativas no modo Economico ou com 'reducao de movimento' do Android.
+* Mantem V12.9: placares, 14 presentes, chefao/HP, torres, painéis, DEMO, simulacao TikTok OFFLINE, persistencia, diagnostico, painel admin.
+* Todos efeitos sao visuais: NENHUMA regra de pontuacao foi alterada.
+
+INSTALAR:
+cd ~/livepulse
+unzip -o ~/storage/downloads/LivePulse_V12_9_2.zip instalar_v1292.py -d ~/storage/downloads
+python ~/storage/downloads/instalar_v1292.py
+node batalha.js --demo
+
+ARENA: http://127.0.0.1:3001/overlay?v=1292
+PAINEL: http://127.0.0.1:3001/painel?v=1292
+
+TESTES COM SERVIDOR PARADO: python testar_v1292.py
+
+MODO TIKTOK SIMULADO: node batalha.js --sim-tiktok
+
+Nao conectar em LIVE real antes da validacao final. Os testes offline nao comprovam FPS, bateria ou integracao de eventos reais no aparelho.

@@ -1,0 +1,31 @@
+LivePulse V12.9.3 — Reconstrucao Artistica Premium (SEM LIVE REAL)
+
+ARTE: 280 quadros independentes RGBA mais detalhados para 2 dragoes, 3 fases do chefe e 2 torres.
+Todos os arquivos mantem EXATAMENTE os nomes, dimensoes, acoes e indices dos sprites V12.9 para preservar a logica existente.
+Economico usa assets antigos leves. Equilibrado e Cinematografico usam as novas artes premium.
+O trabalho atual e uma reconstrucao 2D ilustrada; nao e 3D nem replica fotorrealista da referencia.
+
+INSTALACAO: pare o servidor. Baixe ZIP completo OU patch menor para Downloads.
+O instalador encontra o ZIP por conteudo, mesmo que o Android o renomeie.
+Para extrair o instalador caso ainda nao esteja na pasta Downloads:
+  python - <<'PY'
+from pathlib import Path
+from zipfile import ZipFile
+D=Path.home()/'storage/downloads'
+for p in sorted(D.glob('*.zip'),key=lambda x:x.stat().st_mtime,reverse=True):
+ try:
+  with ZipFile(p) as z:
+   if 'instalar_v1293.py' in z.namelist():
+    (D/'instalar_v1293.py').write_bytes(z.read('instalar_v1293.py'))
+    print('Instalador extraido de',p.name)
+    break
+ except Exception:pass
+else:raise SystemExit('ERRO: baixe o ZIP V12.9.3 em Downloads')
+PY
+  python ~/storage/downloads/instalar_v1293.py
+
+Iniciar: cd ~/livepulse && node batalha.js --demo
+Testar com servidor parado: cd ~/livepulse && python testar_v1293.py
+Arena: http://127.0.0.1:3001/overlay?v=1293
+Painel: http://127.0.0.1:3001/painel?v=1293
+Nenhuma conexao TikTok real realizada; suporte a simulacao preservado.

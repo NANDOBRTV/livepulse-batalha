@@ -1,0 +1,6 @@
+LivePulse V11.8 - Testes completos de batalha
+
+Instalar: extrair instalar_v118.py em Downloads e executar python ~/storage/downloads/instalar_v118.py.
+Executar jogo: cd ~/livepulse && node batalha.js --demo.
+Executar testes: PARE o servidor e execute cd ~/livepulse && python testar_v118.py. O teste inicia um servidor isolado em 127.0.0.1:3001, nao altera sua partida real, e grava relatorio_testes_v118.json.
+Resultado verificado no ambiente de desenvolvimento: 33/33 testes aprovados. LIVE real, reconexao do TikTok e interface Android nao foram testadas.

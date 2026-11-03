@@ -1,0 +1,39 @@
+LivePulse V12.4 — Painel Administrativo Definitivo (base V12.3.3)
+
+NOVO: painel dedicado em http://127.0.0.1:3001/painel
+ANTERIORES: arena /overlay; painel classico /; sprites /sprites; estado /state; saude /health.
+
+ATUALIZACOES
+- Painel local responsivo com placar, vida, tempo, chefao, memoria, status TikTok, conexoes SSE.
+- Comandos autenticados: pausar, retomar, iniciar, encerrar (com confirmacao), chefao, missao, escudos, fases, visual.
+- Configuracoes rapidas com validacao e confirmacao antes de reiniciar rodada.
+- Historico de 30 leituras de RAM, ultimos eventos, exportacao segura de diagnostico JSON (sem chave).
+- Endpoint GET /admin/v124/status protegido com a chave ja existente.
+- Mantida a pagina /overlay, animacoes, 14 presentes, chefes e integracao TikTok do pacote anterior.
+- Em modo --demo nao e necessaria qualquer LIVE real.
+
+INSTALAR NO TERMUX
+1. Pare o servidor anterior com Ctrl+C.
+2. Baixe o arquivo LivePulse_V12_4_Painel_Administrativo_Definitivo.zip em ~/storage/downloads.
+3. cd ~/livepulse
+4. unzip -o ~/storage/downloads/LivePulse_V12_4_Painel_Administrativo_Definitivo.zip instalar_v124.py -d ~/storage/downloads
+5. python ~/storage/downloads/instalar_v124.py
+6. node batalha.js --demo
+7. Abra no Chrome: http://127.0.0.1:3001/painel?v=124
+
+O painel novo precisa da chave administrativa exibida no Termux na primeira autorizacao.
+Nao publique a chave. Ela nao consta do relatorio exportado.
+
+TESTES (pare o servidor antes)
+cd ~/livepulse
+python testar_v124.py
+python testar_painel_v124.py
+
+BACKUP
+Cada instalacao cria uma pasta ~/livepulse/backup_antes_v124_*, com a versao antiga,
+configuracao, chave administrativa, estados e recursos visuais existentes.
+
+LIMITACOES
+- A conexao com TikTok LIVE real e desempenho no seu Android nao foram testados remotamente.
+- O painel fica acessivel apenas em 127.0.0.1 (mesmo dispositivo), nao abre porta na rede.
+- Finalizar rodada e salvar configuracoes alteram o andamento do jogo: exige confirmacao.

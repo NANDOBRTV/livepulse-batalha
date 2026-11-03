@@ -1,0 +1,500 @@
+{
+  "version": "11.1",
+  "bosses": 3,
+  "actions": [
+    "idle",
+    "summon",
+    "attack",
+    "hurt",
+    "defeat"
+  ],
+  "frames_per_action": 8,
+  "frame_size": [
+    320,
+    250
+  ],
+  "format": "RGBA PNG",
+  "artwork": "original vector art rendered as PNG",
+  "files": {
+    "livepulse_visual/v111_boss_1_idle_0.png": {
+      "sha256": "8bcb130967e9d0b6a4a5dd9483d037be21f0083ccca730829d068b47d7a5ea5e",
+      "bytes": 37684
+    },
+    "livepulse_visual/v111_boss_1_idle_1.png": {
+      "sha256": "267e30a81db077004fad522cf19a511477c70efc28ad8f227641cd62f24264b0",
+      "bytes": 37466
+    },
+    "livepulse_visual/v111_boss_1_idle_2.png": {
+      "sha256": "ef50d707bccee542a68c76c826a3b31198cb28411088b986bc6003c32727beaa",
+      "bytes": 36890
+    },
+    "livepulse_visual/v111_boss_1_idle_3.png": {
+      "sha256": "7ef801224644e4db3b88d10c1ad31952234ce334c3dd98982fdf4bc01a399721",
+      "bytes": 37477
+    },
+    "livepulse_visual/v111_boss_1_idle_4.png": {
+      "sha256": "bf7d40cae0b97dbbed8d77179127ea2184d7ba8c8a0c63b1f3547c5074be6b55",
+      "bytes": 37683
+    },
+    "livepulse_visual/v111_boss_1_idle_5.png": {
+      "sha256": "b2b88a81365b13b1c0ab945de48349f94f6dbcdd3df07960f12778acc996bdb2",
+      "bytes": 37845
+    },
+    "livepulse_visual/v111_boss_1_idle_6.png": {
+      "sha256": "ee0770af2dd2d8ce04944d177bddc40324d14a351d6e3f359f847758782d5af8",
+      "bytes": 36634
+    },
+    "livepulse_visual/v111_boss_1_idle_7.png": {
+      "sha256": "e0131c32093dec289570033f261f621af65c42b94e7e1faff3fc98a64d48a95a",
+      "bytes": 37798
+    },
+    "livepulse_visual/v111_boss_1_summon_0.png": {
+      "sha256": "57a65ff81ab76b31c9ab8baccf7b94b4ad03d4462cdac10264cf67e57d5035f5",
+      "bytes": 38898
+    },
+    "livepulse_visual/v111_boss_1_summon_1.png": {
+      "sha256": "0e2a249bdc7ddd86040d38f9d1cbfb7332d88544f986c506abe03809e4f042b5",
+      "bytes": 38734
+    },
+    "livepulse_visual/v111_boss_1_summon_2.png": {
+      "sha256": "55c69bd65181f8308572e41149694d11963f67e92ea9af555932058d555d10be",
+      "bytes": 38320
+    },
+    "livepulse_visual/v111_boss_1_summon_3.png": {
+      "sha256": "2bf48172349d2ebc9d207b158d9e4a0bff5a8198f5115682b6881987a2a5eb91",
+      "bytes": 38792
+    },
+    "livepulse_visual/v111_boss_1_summon_4.png": {
+      "sha256": "c82b295195ac710081d56aa4f8218319a5f1e28112ceeb8582744e3024979c12",
+      "bytes": 39058
+    },
+    "livepulse_visual/v111_boss_1_summon_5.png": {
+      "sha256": "dd5af77de2594cb48bde0d9361742ae4ead9dc7a79876b18fde6d6c0000a043d",
+      "bytes": 39037
+    },
+    "livepulse_visual/v111_boss_1_summon_6.png": {
+      "sha256": "4c03b1aa962f822dfb0f75b69543122d3652176d2b9aa1a01c2aa656a70fd871",
+      "bytes": 38105
+    },
+    "livepulse_visual/v111_boss_1_summon_7.png": {
+      "sha256": "d54b1a24caedc29966e2888153c4727a556cab2630ada0f607dda10b38fa6147",
+      "bytes": 39200
+    },
+    "livepulse_visual/v111_boss_1_attack_0.png": {
+      "sha256": "a89cc576c5001cad52999123360bbc074d33c71bd336984a78894ba8b830e83a",
+      "bytes": 40148
+    },
+    "livepulse_visual/v111_boss_1_attack_1.png": {
+      "sha256": "ff4ac8e104eb009378a4f69092dc99cccc492d1993532e8f06792ce1614ceb7d",
+      "bytes": 39750
+    },
+    "livepulse_visual/v111_boss_1_attack_2.png": {
+      "sha256": "053cb1abf43b0d98149b5d658afce44663891e7798ec6f2c7663bd034d4abeb8",
+      "bytes": 40175
+    },
+    "livepulse_visual/v111_boss_1_attack_3.png": {
+      "sha256": "f8a1d430a186d9c92be3f4a8ee2b79551495e56ae576f48dd555e6d9841a6080",
+      "bytes": 40147
+    },
+    "livepulse_visual/v111_boss_1_attack_4.png": {
+      "sha256": "230ddae6e88471519e20c9615d1fe05ab615f7dff4357f4a10ac722f23d8807c",
+      "bytes": 40160
+    },
+    "livepulse_visual/v111_boss_1_attack_5.png": {
+      "sha256": "c5075480a90061bee93b9e36a417efe5d25a3f9a3fcf7e7b45e3404f9275dbd3",
+      "bytes": 41224
+    },
+    "livepulse_visual/v111_boss_1_attack_6.png": {
+      "sha256": "647148a3a5c1729110c8e68a308c5b6ce1e2605cfe4616102e746e5e08797351",
+      "bytes": 42224
+    },
+    "livepulse_visual/v111_boss_1_attack_7.png": {
+      "sha256": "d04d78236a6c8aee37623793abe948058368c019a29d6794dede2cbdf3c3974f",
+      "bytes": 42499
+    },
+    "livepulse_visual/v111_boss_1_hurt_0.png": {
+      "sha256": "ec738e6ec919b09b0b5e0a8091c4999d6b3ae201315978fff3c819a039c1024b",
+      "bytes": 43749
+    },
+    "livepulse_visual/v111_boss_1_hurt_1.png": {
+      "sha256": "5771d9e748f7084019f5d1fe02acf43ace4170dc99b526a53bb4a8a3adce5fc7",
+      "bytes": 42911
+    },
+    "livepulse_visual/v111_boss_1_hurt_2.png": {
+      "sha256": "c840726efea02ad1b8a4a48949fe7f3e769bfa892751ac82d72a168b3b0ec7b9",
+      "bytes": 42362
+    },
+    "livepulse_visual/v111_boss_1_hurt_3.png": {
+      "sha256": "c8357643932b2852d9ff076fbc9fbf6a6c4d6d40f21e9beb117e975b27a16641",
+      "bytes": 42862
+    },
+    "livepulse_visual/v111_boss_1_hurt_4.png": {
+      "sha256": "310ac312a0f0dc38f2dace3718604d9e988330721e3441599418c6a2eb810aa3",
+      "bytes": 43814
+    },
+    "livepulse_visual/v111_boss_1_hurt_5.png": {
+      "sha256": "aa1294dd7357db269fee940c24b0b9a45aa5a03764e181c87b166113ab56e374",
+      "bytes": 42801
+    },
+    "livepulse_visual/v111_boss_1_hurt_6.png": {
+      "sha256": "fc4daf8e99e661786c503db68cfc9531406354f17698cfdc851cb8c49ec9b1c6",
+      "bytes": 42578
+    },
+    "livepulse_visual/v111_boss_1_hurt_7.png": {
+      "sha256": "e383be676c7128c1983ad0ed43a5c7f7129f59a7b2fdd5cd9f11b99ec1ff5403",
+      "bytes": 42742
+    },
+    "livepulse_visual/v111_boss_1_defeat_0.png": {
+      "sha256": "2fe3eca3c776af935e49e434199c9d5f3b8e289885767f78e057faa2a13afa57",
+      "bytes": 39766
+    },
+    "livepulse_visual/v111_boss_1_defeat_1.png": {
+      "sha256": "48d82b9efa12b15f050672de074483f7eee6d94f1d58f3d12f493e2e196a052c",
+      "bytes": 36732
+    },
+    "livepulse_visual/v111_boss_1_defeat_2.png": {
+      "sha256": "0b87eea5718a7e264b5b2c76ca7e68aee04214f73f0f17b62402574f3095983e",
+      "bytes": 31801
+    },
+    "livepulse_visual/v111_boss_1_defeat_3.png": {
+      "sha256": "838bfc4588009905d8862c666c84690a23de67d4a827b9bf46f80f44761e20a0",
+      "bytes": 27576
+    },
+    "livepulse_visual/v111_boss_1_defeat_4.png": {
+      "sha256": "b2e4828f19c8d1e9036b2abdf05f45d3fe6c35985765325ee365fbc9396e1f20",
+      "bytes": 21857
+    },
+    "livepulse_visual/v111_boss_1_defeat_5.png": {
+      "sha256": "81fd69087e68a46c8616b0c5474e9adddb90370ab65da70240c85c677bc61a46",
+      "bytes": 16718
+    },
+    "livepulse_visual/v111_boss_1_defeat_6.png": {
+      "sha256": "54091670c93e2e45cdee09cafb631ffa05e1c32bd5cb3e1917160758aaf58aaa",
+      "bytes": 12134
+    },
+    "livepulse_visual/v111_boss_1_defeat_7.png": {
+      "sha256": "b3ec277a998fc32aa4eeb536895c21965af2394a445567c63219a7e9f9cb1042",
+      "bytes": 8283
+    },
+    "livepulse_visual/v111_boss_2_idle_0.png": {
+      "sha256": "8fac297dc3bcd4d453c89db103261175c769e3f8389466e8e9380cf2a7763a2e",
+      "bytes": 42163
+    },
+    "livepulse_visual/v111_boss_2_idle_1.png": {
+      "sha256": "b48b8f49305d36fb4fe611fe225dd9c58f4292afa7d72fde901a0824870d30c5",
+      "bytes": 42292
+    },
+    "livepulse_visual/v111_boss_2_idle_2.png": {
+      "sha256": "17d9990e44d7216a34b40b9d8bfc9ed7eb1fd6c1109928e99dab23e028e45b40",
+      "bytes": 41764
+    },
+    "livepulse_visual/v111_boss_2_idle_3.png": {
+      "sha256": "e1f1838ba468bf3c4b2363c222553800ec6b7370d25638e6af222913b4e78cf6",
+      "bytes": 42281
+    },
+    "livepulse_visual/v111_boss_2_idle_4.png": {
+      "sha256": "0da6ac844cd607252dd6916a0a51b36b0856f3b697e576ba220261db7254a886",
+      "bytes": 42187
+    },
+    "livepulse_visual/v111_boss_2_idle_5.png": {
+      "sha256": "fd5586d96f110b22f1a9608dcd259e4275785b73b803d1f8bf8fdc2ea82b2b81",
+      "bytes": 42366
+    },
+    "livepulse_visual/v111_boss_2_idle_6.png": {
+      "sha256": "a4f59646e42ff7af286a0cf584317824c8d9710bcaebbc4e64c983e7a23ccb24",
+      "bytes": 41034
+    },
+    "livepulse_visual/v111_boss_2_idle_7.png": {
+      "sha256": "2a73ff919aedce36cdfa9a2864e43de62c2ab87f77ba990a4c631a69a629a36c",
+      "bytes": 42356
+    },
+    "livepulse_visual/v111_boss_2_summon_0.png": {
+      "sha256": "4cd231597dd8ba8f698affa44f8c3b57df5e984a131a9600a43e6bffd9cd293c",
+      "bytes": 43335
+    },
+    "livepulse_visual/v111_boss_2_summon_1.png": {
+      "sha256": "73c603dbd4ee598392888aa95a863036e780bad9b4181868d38a69775dd29659",
+      "bytes": 43558
+    },
+    "livepulse_visual/v111_boss_2_summon_2.png": {
+      "sha256": "d65e72308d11a2ebfec5c94d2aebe631ab20666c6b4e8d09db07701777fdb164",
+      "bytes": 43032
+    },
+    "livepulse_visual/v111_boss_2_summon_3.png": {
+      "sha256": "7eae0c802a19460b8f3831968a796ea406202b7a9931e469b87c235b277f0461",
+      "bytes": 43666
+    },
+    "livepulse_visual/v111_boss_2_summon_4.png": {
+      "sha256": "2ad31674829836af5f4b15bcb67bd5463b8fdc34ddd9fefe80cbb244b200031e",
+      "bytes": 43629
+    },
+    "livepulse_visual/v111_boss_2_summon_5.png": {
+      "sha256": "71cef1702a1f32192df224c4878cd25204a18f7f9afddb5e294e37f40193bf93",
+      "bytes": 43459
+    },
+    "livepulse_visual/v111_boss_2_summon_6.png": {
+      "sha256": "e749bcbfba192a3abc7592363b603c567758291541349fc4183bbd93ba80629f",
+      "bytes": 42480
+    },
+    "livepulse_visual/v111_boss_2_summon_7.png": {
+      "sha256": "8958f0dd8e75db0f6065bddb71979ea8e0f0e12ec25908c098b9325d90013f52",
+      "bytes": 43539
+    },
+    "livepulse_visual/v111_boss_2_attack_0.png": {
+      "sha256": "7fc68936c8dd00f5569af253180a22bd9eccd18d9cf4b27bfbe446ba8926f382",
+      "bytes": 44671
+    },
+    "livepulse_visual/v111_boss_2_attack_1.png": {
+      "sha256": "3a4d1479c1eb0c62d7e45a1d5170edf69ca93105ea1f65ca436738ca54801daa",
+      "bytes": 44228
+    },
+    "livepulse_visual/v111_boss_2_attack_2.png": {
+      "sha256": "b99619e9d8c648958b1b0e18686a57899e4a12cb686b9290a8cfb028cdd6b827",
+      "bytes": 44760
+    },
+    "livepulse_visual/v111_boss_2_attack_3.png": {
+      "sha256": "0538e3323c061f59d9394a6e207fa430403be366d33171bf2c0464265da27573",
+      "bytes": 44439
+    },
+    "livepulse_visual/v111_boss_2_attack_4.png": {
+      "sha256": "1ffe9d429c6dc56e6059264294f9bea7aa05e7ccb0fbf930b7fc44f8c603e82c",
+      "bytes": 44610
+    },
+    "livepulse_visual/v111_boss_2_attack_5.png": {
+      "sha256": "28fc3d31d465767cf70baaeb97c067a9107477c5da2a5f61aebe07cbdcf655d9",
+      "bytes": 44563
+    },
+    "livepulse_visual/v111_boss_2_attack_6.png": {
+      "sha256": "7ce15b4eee439026c79dabb6be5e8aa7c24828116cae015181a236881454d76f",
+      "bytes": 45929
+    },
+    "livepulse_visual/v111_boss_2_attack_7.png": {
+      "sha256": "016d3ddc5f6133e5a9e4f88e1348b1c939b3c8b66682f9b01e7cbb78397e6b73",
+      "bytes": 46057
+    },
+    "livepulse_visual/v111_boss_2_hurt_0.png": {
+      "sha256": "0a9badebdf0e0140fabbcba3f0413a4e2a39afa5c12e85630f2037dfb3edc2f8",
+      "bytes": 47711
+    },
+    "livepulse_visual/v111_boss_2_hurt_1.png": {
+      "sha256": "9afc22d19901b6f73f563167cff1cb9f201aa239b45276b67564970201294ef5",
+      "bytes": 48020
+    },
+    "livepulse_visual/v111_boss_2_hurt_2.png": {
+      "sha256": "c2f55fb1d7f4b9c23b4948d541fbae25d014ff72a0a10953cb7dda355aff3be2",
+      "bytes": 46668
+    },
+    "livepulse_visual/v111_boss_2_hurt_3.png": {
+      "sha256": "b8ae6ac665205a4a248b7155f97b013eefbc6342c461062fd807c862c61a7d35",
+      "bytes": 48033
+    },
+    "livepulse_visual/v111_boss_2_hurt_4.png": {
+      "sha256": "21077092965e8186633d72fc8dfd710e8007452cc17d0a131fb56d5d4936d174",
+      "bytes": 47881
+    },
+    "livepulse_visual/v111_boss_2_hurt_5.png": {
+      "sha256": "73c9f649a0f48aae7322c40b1d24e777b8231a01e83f2bd25dfaf788b7e7800a",
+      "bytes": 47958
+    },
+    "livepulse_visual/v111_boss_2_hurt_6.png": {
+      "sha256": "7e369faa8f5bb8dc09e2aee2a7723af497fa85b60bba7271e50e82eb4ca936b8",
+      "bytes": 46465
+    },
+    "livepulse_visual/v111_boss_2_hurt_7.png": {
+      "sha256": "92c7f9ea38623feb0038660546894d83c8d43dddd01b8c332a4c4e3fdfabc354",
+      "bytes": 47994
+    },
+    "livepulse_visual/v111_boss_2_defeat_0.png": {
+      "sha256": "d764cf494b416774fe757ce99f0334ab9161c3136fcee9ddee5b7331d057d054",
+      "bytes": 43541
+    },
+    "livepulse_visual/v111_boss_2_defeat_1.png": {
+      "sha256": "4e790281db17920e4a4f3806c0774031be1d143b5668650499b9d2c0393f5564",
+      "bytes": 40826
+    },
+    "livepulse_visual/v111_boss_2_defeat_2.png": {
+      "sha256": "7e1f591b8785a41967796ce5e7ec20dbb5991ae8ef46dde7f4e4e3c5747743c5",
+      "bytes": 35252
+    },
+    "livepulse_visual/v111_boss_2_defeat_3.png": {
+      "sha256": "4860faa9d302d4d19d2fc688e83ce7d59bd695c232e6d771136271e6aa7aab3c",
+      "bytes": 30397
+    },
+    "livepulse_visual/v111_boss_2_defeat_4.png": {
+      "sha256": "5f3d7ed4c9a2c475d1770778bd595619c39920f761f78275b6b1fe6e9b632657",
+      "bytes": 24494
+    },
+    "livepulse_visual/v111_boss_2_defeat_5.png": {
+      "sha256": "3c2d14907f61fded89b03f49d1f083346f9dff068dc21e3c51dbef0b11372e12",
+      "bytes": 18713
+    },
+    "livepulse_visual/v111_boss_2_defeat_6.png": {
+      "sha256": "8946efddaeb1c8908d973f61a38bc60ebac81452fa34b97e3b8d250f4b966739",
+      "bytes": 13301
+    },
+    "livepulse_visual/v111_boss_2_defeat_7.png": {
+      "sha256": "5986f0086e9912d573e7d4fa1dda357a4e3dfacf6b3a294365fcdf79f7d038af",
+      "bytes": 9038
+    },
+    "livepulse_visual/v111_boss_3_idle_0.png": {
+      "sha256": "0626628206a3c0ea26a620259931ea16c4b698fbc5e248bee3161571763c8bc8",
+      "bytes": 42640
+    },
+    "livepulse_visual/v111_boss_3_idle_1.png": {
+      "sha256": "f97c9a4ccb1afc45cab434f88075ca0ad9ed22853ae14e0424decc4fd0593104",
+      "bytes": 42158
+    },
+    "livepulse_visual/v111_boss_3_idle_2.png": {
+      "sha256": "591199228b2a62d1515a3f429370853e725d1ac4a2b4a28fbaf0fecd5b8e5fc1",
+      "bytes": 42277
+    },
+    "livepulse_visual/v111_boss_3_idle_3.png": {
+      "sha256": "c67910109fe54b15460491d08e9780613a202480e52604ef61e0a8209feac82e",
+      "bytes": 42159
+    },
+    "livepulse_visual/v111_boss_3_idle_4.png": {
+      "sha256": "a7ee83bb37ddc818263bb0174cd33554600aaf1c8b477f727be94d6fab2723d8",
+      "bytes": 42656
+    },
+    "livepulse_visual/v111_boss_3_idle_5.png": {
+      "sha256": "ea9069206d17de629d2788ef8d0a3b856413252ccdd1f33b4cf3dca5ade6ee2a",
+      "bytes": 42380
+    },
+    "livepulse_visual/v111_boss_3_idle_6.png": {
+      "sha256": "ad8a051ce4ff2c51c84e7bd6f17ac51c422f2f15cfb09bd4a963796dc2862d1f",
+      "bytes": 41795
+    },
+    "livepulse_visual/v111_boss_3_idle_7.png": {
+      "sha256": "df80c71e4d69dad719097ee47cabd781285c9ff9f25ac19ff2767fa8e4bf247f",
+      "bytes": 42363
+    },
+    "livepulse_visual/v111_boss_3_summon_0.png": {
+      "sha256": "a411cfa60acae1a4bb1cf3deba15da7671e9eb291622a042370ab1b582cc2193",
+      "bytes": 43876
+    },
+    "livepulse_visual/v111_boss_3_summon_1.png": {
+      "sha256": "8ed37e680a0fc2bbfc2cdd6307b150d6d62db2ffcb1da93bc81b7bb0ee742e39",
+      "bytes": 43609
+    },
+    "livepulse_visual/v111_boss_3_summon_2.png": {
+      "sha256": "0986117e5ff66a37e57bbd14ec96a0738cb6c5fa593d48d60f69209e6c1624ea",
+      "bytes": 43892
+    },
+    "livepulse_visual/v111_boss_3_summon_3.png": {
+      "sha256": "83b749409a39ab207bcc6d5cfecbac7217132664b5a6a5aa9ee132df7d665dd3",
+      "bytes": 43651
+    },
+    "livepulse_visual/v111_boss_3_summon_4.png": {
+      "sha256": "cf69b1b57befd8aa50d78f9c55697457e99aa4c117515ececb85870aaf94c882",
+      "bytes": 44425
+    },
+    "livepulse_visual/v111_boss_3_summon_5.png": {
+      "sha256": "e5b84dc481be62eaade3580732412b2adf5cf285c40be59e3f7958f239faf851",
+      "bytes": 43804
+    },
+    "livepulse_visual/v111_boss_3_summon_6.png": {
+      "sha256": "d8d69eaa73a307652c63503484ae4d4c7c779cd09bd921693c33fafeae17ac88",
+      "bytes": 43255
+    },
+    "livepulse_visual/v111_boss_3_summon_7.png": {
+      "sha256": "5b0d9dabc755fd2021b4b7618d46e0201620c9bd28e8af55bccf8939b4c2a956",
+      "bytes": 43826
+    },
+    "livepulse_visual/v111_boss_3_attack_0.png": {
+      "sha256": "54875a116fc8fbe0aa0869a19880ff36f618ef3612a0c2060f71a6336be0f42e",
+      "bytes": 45197
+    },
+    "livepulse_visual/v111_boss_3_attack_1.png": {
+      "sha256": "bbda2069520c33cc2738a8434de72beb6c8ebd7f629a29189af90eec19044251",
+      "bytes": 44337
+    },
+    "livepulse_visual/v111_boss_3_attack_2.png": {
+      "sha256": "e7f2082ad6d40d7bfd814038e1794c3b9b06c51934228a7da99256962277145b",
+      "bytes": 44384
+    },
+    "livepulse_visual/v111_boss_3_attack_3.png": {
+      "sha256": "9236822923617f821ff1135819fb391f94cf21a8020f89ffa9f92ad3ebcdfe8d",
+      "bytes": 44608
+    },
+    "livepulse_visual/v111_boss_3_attack_4.png": {
+      "sha256": "ac7162a8ac579bae0352e2eee009b2282bfd3f079dd674088a95d2c943a52f37",
+      "bytes": 44965
+    },
+    "livepulse_visual/v111_boss_3_attack_5.png": {
+      "sha256": "ec5eb9861d42839600002fed27d0c53c33d570e557e71e8f4ee2bddd78ea62c6",
+      "bytes": 44905
+    },
+    "livepulse_visual/v111_boss_3_attack_6.png": {
+      "sha256": "2fb7460363156f716e00d705e642a9559beecd231582d3db2b4c06125d9f795c",
+      "bytes": 46135
+    },
+    "livepulse_visual/v111_boss_3_attack_7.png": {
+      "sha256": "77b4d0c00f32f5bbd75db73cedcd584b1339e4ec26b51527854be21106fc0520",
+      "bytes": 45856
+    },
+    "livepulse_visual/v111_boss_3_hurt_0.png": {
+      "sha256": "d9aa1dd4de4a0742cbf9630b5cd970bffb4395acde6f9b1d7a468df09f84dd85",
+      "bytes": 48276
+    },
+    "livepulse_visual/v111_boss_3_hurt_1.png": {
+      "sha256": "c611fd72131f4867a4e9497a51085c5adccd0a5dcbd2fb86a934ca04e0861861",
+      "bytes": 47866
+    },
+    "livepulse_visual/v111_boss_3_hurt_2.png": {
+      "sha256": "ed7e03fcbe56c79154e311d05c93452d2a8dadc9881103262c45aff00fef8334",
+      "bytes": 47675
+    },
+    "livepulse_visual/v111_boss_3_hurt_3.png": {
+      "sha256": "3badc66342737f7204a2a8e64308e2dedf86895c6ee8a26d7397c7a393a27b33",
+      "bytes": 47907
+    },
+    "livepulse_visual/v111_boss_3_hurt_4.png": {
+      "sha256": "e2140492e695ea12e068c096617add2d3db6c6d143589b377ea17859ac63c7b4",
+      "bytes": 48614
+    },
+    "livepulse_visual/v111_boss_3_hurt_5.png": {
+      "sha256": "aa3c3c8e66e6b522043e492b320aab127068476e4f2d0b034d0e828d1ffd819d",
+      "bytes": 47938
+    },
+    "livepulse_visual/v111_boss_3_hurt_6.png": {
+      "sha256": "04e55c20e824ddb9171c5caf6592e097608257157f62dd845f74a7c36927fe67",
+      "bytes": 47131
+    },
+    "livepulse_visual/v111_boss_3_hurt_7.png": {
+      "sha256": "d0e0479bde67a59b162cc96e66ca8a08042c298dda4152bda12c8d5c381c8ac1",
+      "bytes": 47898
+    },
+    "livepulse_visual/v111_boss_3_defeat_0.png": {
+      "sha256": "3eac771a2e0fa5e8c1a61ace32f08b7f93d15ea9888803651fb924bde00c7ff5",
+      "bytes": 44538
+    },
+    "livepulse_visual/v111_boss_3_defeat_1.png": {
+      "sha256": "5f30cc80d3913d2bd98261513346e7125583a01764959e7a5fb4922565bd80e2",
+      "bytes": 41005
+    },
+    "livepulse_visual/v111_boss_3_defeat_2.png": {
+      "sha256": "15d4824fc716076eb7cd7a9927f72e6340ab2c7c3019b599965b47cd254f7858",
+      "bytes": 36287
+    },
+    "livepulse_visual/v111_boss_3_defeat_3.png": {
+      "sha256": "1292a7c51fa851deef6fe2971ca1e57a487af1a86cf0cb951f75c14dc911dc3e",
+      "bytes": 30958
+    },
+    "livepulse_visual/v111_boss_3_defeat_4.png": {
+      "sha256": "68a49f4de89c443c3466d54f44153ff7df46ab2752b9f219a85565fb1ab5965f",
+      "bytes": 24539
+    },
+    "livepulse_visual/v111_boss_3_defeat_5.png": {
+      "sha256": "d6947d1b766df422fd1464711e54cfcb6b71f2613ccf39ea9e65ffa2b63c5c93",
+      "bytes": 18893
+    },
+    "livepulse_visual/v111_boss_3_defeat_6.png": {
+      "sha256": "9d7e43456e2f0f93dabbf49a3c0339a6053e01db8f841cb536e167a8d14a86cc",
+      "bytes": 13682
+    },
+    "livepulse_visual/v111_boss_3_defeat_7.png": {
+      "sha256": "7852355a2a477c2f203cd24032a29a212b808f94cfdc918908c42cc983ab2f36",
+      "bytes": 9216
+    }
+  }
+}

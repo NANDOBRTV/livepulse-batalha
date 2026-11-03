@@ -1,0 +1,1 @@
+V12.2.3: modo DEMO inicia automaticamente a partida, sem precisar clicar Iniciar no painel. Mantem eventos, sprites e polling, exibe diagnostico de quadros. Execute node batalha.js --demo e abra /overlay. Se ainda estiver estatico, envie o texto do indicador no rodape.

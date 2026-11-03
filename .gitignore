@@ -1,0 +1,26 @@
+# Dados privados do servidor
+.env
+.env.*
+!.env.example
+batalha_admin_v55.key
+batalha_config.json
+batalha_runtime_*.json
+batalha_stats_*.json
+batalha_seen_*.json
+batalha_retencao_*.json
+batalha_comunidade_*.json
+batalha_avancado_*.json
+batalha_combate_*.json
+users.json
+# Backups e instalação local
+backup_antes_*/
+backup_*/
+*.tmp
+*.log
+node_modules/
+.DS_Store
+__pycache__/
+*.pyc
+# Relatórios de teste locais (manter relatórios versionados que já vieram no pacote)
+relatorio_estabilidade_v122.json
+relatorio_performance_v126.json

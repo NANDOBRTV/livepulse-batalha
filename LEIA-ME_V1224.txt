@@ -1,0 +1,1 @@
+V12.2.4: corrige erro fatal JavaScript Cannot access v115Effects before initialization, movendo inicialização de efeitos para antes do primeiro v60setMode. Preserva recursos e modo DEMO. Testado em Chromium headless com scripts da pagina e contador de quadros.

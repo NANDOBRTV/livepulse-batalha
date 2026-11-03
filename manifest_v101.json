@@ -1,0 +1,118 @@
+{
+  "version": "10.1",
+  "sprites": {
+    "livepulse_visual/v101_boss_1_0.png": {
+      "sha256": "5f382cac9054967622cd3a3f797564d6999d0ccbbb3f94b1680a786a72307595",
+      "bytes": 50271
+    },
+    "livepulse_visual/v101_boss_1_1.png": {
+      "sha256": "95e22361913a276e139e54f61cf069f62ae36dca2335c343fd10359ead1519c2",
+      "bytes": 56712
+    },
+    "livepulse_visual/v101_boss_1_2.png": {
+      "sha256": "4b5f47580265054868f222b2f5467ce035a7d0fda2701a5dd0a30508e81d7410",
+      "bytes": 59591
+    },
+    "livepulse_visual/v101_boss_1_3.png": {
+      "sha256": "dc5b530b8a366ad741e920cd0339fb30a9fcae331583466d4a9b21def59ce303",
+      "bytes": 53358
+    },
+    "livepulse_visual/v101_boss_1_4.png": {
+      "sha256": "903ce4e2ad8d6e3d262bd530933c15163c01d514d6f699fc75ed2057716a67bb",
+      "bytes": 53167
+    },
+    "livepulse_visual/v101_boss_1_5.png": {
+      "sha256": "903ce4e2ad8d6e3d262bd530933c15163c01d514d6f699fc75ed2057716a67bb",
+      "bytes": 53167
+    },
+    "livepulse_visual/v101_boss_2_0.png": {
+      "sha256": "55167af0717efedff655cedf6b36afcb2c07aa803e2ef15fc31b13fdde0fc6f2",
+      "bytes": 57411
+    },
+    "livepulse_visual/v101_boss_2_1.png": {
+      "sha256": "bce1433f2ef9de488866efa5ef0b580669a5ad217da0db21e7cc5b2fec55a5d8",
+      "bytes": 62003
+    },
+    "livepulse_visual/v101_boss_2_2.png": {
+      "sha256": "b76642f54ebbd440f4f6ab51d2bab48e00f2c7ae0a2b773cf55529eb8974de24",
+      "bytes": 65383
+    },
+    "livepulse_visual/v101_boss_2_3.png": {
+      "sha256": "cb82cfb4c781d0cae3dfcd17d5f1e790656b887d7cf260aeafca0c9e2999b23c",
+      "bytes": 60406
+    },
+    "livepulse_visual/v101_boss_2_4.png": {
+      "sha256": "c3d6162e1dc6454b07c31354a9a07017a4da80ca3862727e6cc7877f4dcc1cad",
+      "bytes": 60383
+    },
+    "livepulse_visual/v101_boss_2_5.png": {
+      "sha256": "c3d6162e1dc6454b07c31354a9a07017a4da80ca3862727e6cc7877f4dcc1cad",
+      "bytes": 60383
+    },
+    "livepulse_visual/v101_boss_3_0.png": {
+      "sha256": "4457a0562eea79a5c4c816d00c5f783bf9e984ed84afa10d6b11801612326a89",
+      "bytes": 53219
+    },
+    "livepulse_visual/v101_boss_3_1.png": {
+      "sha256": "441949704990644926f0311ec80869db35335834b34367398c89fb3a6a5e3925",
+      "bytes": 67823
+    },
+    "livepulse_visual/v101_boss_3_2.png": {
+      "sha256": "8eec07136c5e55104d253a9a77beb2af7680d80e4380eb85cac4a9a57fd27862",
+      "bytes": 72808
+    },
+    "livepulse_visual/v101_boss_3_3.png": {
+      "sha256": "a29ba3c1f4029fa8b6a04cfba7aa1a630fd65120f59ebfde223e118a1b74f951",
+      "bytes": 58160
+    },
+    "livepulse_visual/v101_boss_3_4.png": {
+      "sha256": "191953d9ee5cf42dd272f43471d8756aa07dcf1fb3b3460e4bae44643947d83a",
+      "bytes": 65397
+    },
+    "livepulse_visual/v101_boss_3_5.png": {
+      "sha256": "191953d9ee5cf42dd272f43471d8756aa07dcf1fb3b3460e4bae44643947d83a",
+      "bytes": 65397
+    },
+    "livepulse_visual/v101_tower_chat_idle.png": {
+      "sha256": "67f1efd8d829e8ebdeb24b6698c8cfd15c40dfb664bc12ebf74d091d27bbb661",
+      "bytes": 70155
+    },
+    "livepulse_visual/v101_tower_chat_hurt.png": {
+      "sha256": "7329e7366b8bd3b26b1e28d4a202d7f14fe3441ac36682702c67552ac06b6854",
+      "bytes": 69072
+    },
+    "livepulse_visual/v101_tower_chat_shield.png": {
+      "sha256": "c351675d5ec6b3aa6328b8879422ac370721cddf71f853c55b5da8199e7d9447",
+      "bytes": 69476
+    },
+    "livepulse_visual/v101_tower_chat_critical.png": {
+      "sha256": "da1782f3b40b7fb5e0fd305eeaf24bc138b20d30a222caf3cca3f25a34e18798",
+      "bytes": 70280
+    },
+    "livepulse_visual/v101_dragon_chat.png": {
+      "sha256": "882d0c0715582f82402998b7f70cd35e5c0a11bcd67ee4c8cf4c84e54899d4be",
+      "bytes": 17342
+    },
+    "livepulse_visual/v101_tower_creator_idle.png": {
+      "sha256": "6682ef274913a23203c52fca4f77e851cde8fec5e87aa1dd66523308e37b0171",
+      "bytes": 71709
+    },
+    "livepulse_visual/v101_tower_creator_hurt.png": {
+      "sha256": "42c72465ca63c45dc1dd8f34aa52029e19f8030be332820b53672788f32b4595",
+      "bytes": 70398
+    },
+    "livepulse_visual/v101_tower_creator_shield.png": {
+      "sha256": "71737dbdbdfb38a5dbfdc499b8b84b20dcb621d1e92bdb15302d01a8c939c717",
+      "bytes": 70967
+    },
+    "livepulse_visual/v101_tower_creator_critical.png": {
+      "sha256": "dbba76c1987a33f6d82a6994889b5bba585c58a7702e00b2d16c4d2fbfa3525c",
+      "bytes": 71610
+    },
+    "livepulse_visual/v101_dragon_creator.png": {
+      "sha256": "515009f1d17d3846bb73e1450cb2ffd4d4a7fd6edc1bd53e97c943b3f9d3a36c",
+      "bytes": 21081
+    }
+  },
+  "notes": "V10.1 replaces contaminated V10 cutouts with original clean boss/tower sprite sources. Dragon heads trimmed from existing V10 alpha assets. No source game behavior changes intended."
+}

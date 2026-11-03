@@ -1,0 +1,12 @@
+{
+  "version": "11.4",
+  "base": "11.3",
+  "changes": [
+    "mobile responsive scoreboard",
+    "boss health and tower HP layout",
+    "seven gifts each side without boxes",
+    "battle footer panels",
+    "no scoring changes"
+  ],
+  "source_sha256": "a61cc97b739bd7eefb49c91cb7a77f797b2188603c820e8e71a1dc0cd57069f1"
+}

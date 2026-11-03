@@ -1,0 +1,10 @@
+{
+  "name": "livepulse-batalha",
+  "private": true,
+  "version": "12.9.4",
+  "description": "LivePulse Batalha V12.9.4.1 (offline demo)",
+  "scripts": {
+    "demo": "node batalha.js --demo",
+    "sim-tiktok": "node batalha.js --sim-tiktok"
+  }
+}

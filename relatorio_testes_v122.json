@@ -1,0 +1,173 @@
+{
+  "version": "12.4.1",
+  "passed": 33,
+  "total": 33,
+  "results": [
+    {
+      "name": "Servidor DEMO iniciado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Chave administrativa protegida",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Admin sem chave rejeitado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Ação desconhecida rejeitada",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Diagnóstico de saúde",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Estado inicial válido",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Iniciar rodada",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Invocar chefão",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Chefão fase 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Escudo aplicado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Escudo CHAT aplicado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Escudos atualizados",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Ataque simulado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Ataque consome escudo do alvo",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Dano simulado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Dano reduz HP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Transição fase 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Transição fase 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Vitória e encerramento do chefão",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Histórico da vitória",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Pontuação recompensa",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Pausa administrativa",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Retomar rodada",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Modo visualEconomico",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Modo visualEquilibrado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Modo visualCinematografico",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Evento visual DEMO",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "SSE conexão 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "SSE conexão 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "SSE sem vazamento de clientes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Reinício do servidor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Persistência de vitórias",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Ativos de versões anteriores",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "scope": "Node DEMO on ephemeral loopback port; no real TikTok LIVE or Android browser tests"
+}

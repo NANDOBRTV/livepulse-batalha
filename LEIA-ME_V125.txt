@@ -1,0 +1,56 @@
+LIVEPULSE V12.5 — SISTEMA TIKTOK LIVE COM SIMULACAO OFFLINE
+===========================================================
+Base: V12.4.1. Preserva painel, sprites, combate, placares, efeitos,
+14 presentes, chefões, torres, estados, configuracoes e chave do administrador.
+
+NOVO
+- tiktok_bridge_v125.js: processador modular para eventos TikTok.
+  Deduplica IDs de eventos, descarta estados intermediarios de combos,
+  limita contagens e evita conexoes simultaneas/retries duplicados.
+  Reconexao exponencial ate 60 segundos. Cancela apos streamEnd.
+- tiktok_sim_v125.js: conector SIMULADO 100% local; sem rede, conta ou login.
+- --sim-tiktok: reproduz comentarios, curtidas, presentes, seguidores,
+  compartilhamentos e quedas/reconexao offline no mesmo motor da arena.
+- /health e /state: diagnostico do adaptador, quantidade de eventos,
+  duplicados e reconexoes. /painel exibe o resumo V12.5.
+- Testes de comportamento com eventos sintéticos, nao apenas busca de palavras.
+
+INSTALACAO NO TERMUX (FAZER DOWNLOAD DO ZIP ANTES)
+1. Pare o servidor anterior com Ctrl+C (recomendado).
+2. cd ~/livepulse
+3. unzip -o ~/storage/downloads/LivePulse_V12_5_Sistema_TikTok_Offline.zip instalar_v125.py -d ~/storage/downloads
+4. python ~/storage/downloads/instalar_v125.py
+5. node batalha.js --sim-tiktok
+6. Chrome: http://127.0.0.1:3001/overlay?v=125
+7. Painel: http://127.0.0.1:3001/painel?v=125
+
+Modo DEMO original: node batalha.js --demo
+Teste completo (servidor pode estar aberto, testam-se portas isoladas):
+   cd ~/livepulse && python testar_v125.py
+
+AVISOS
+- O simulador nunca se conecta ao TikTok. Nenhuma LIVE real foi testada.
+- O modulo externo tiktok-live-connector precisa estar instalado para
+  conexao real; disponibilidade/protocolo da plataforma podem mudar.
+- A versao ainda nao esta validada em uma transmissao real.
+- Configuracoes, historico e chave administrativa permanecem intactos.
+- O instalador salva backup_antes_v125_* para permitir restauracao manual.
+- Configuracoes personalizadas e imagens de presentes existentes sao preservadas.
+- O servidor escuta somente em 127.0.0.1:3001.
+
+ARQUIVOS PRINCIPAIS
+batalha.js
+instalar_v125.py
+tiktok_bridge_v125.js
+tiktok_sim_v125.js
+testar_tiktok_bridge_v125.js
+testar_tiktok_v125.py
+testar_v125.py
+testar_v124.py
+manifest_v125.json
+
+PROXIMAS ETAPAS
+V12.6: desempenho Android
+V12.7: visual cinematografico definitivo
+V12.8: integracao, revisao e testes finais
+V13.0: edicao final, antes da primeira LIVE real
