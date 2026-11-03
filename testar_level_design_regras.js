@@ -13,4 +13,4 @@ assert.equal(pace({phase:'playing',paused:false,remaining:30,duration:180,boss:{
 assert.equal(pace({phase:'playing',paused:false,remaining:10,duration:180,boss:{active:true},roundSummoned:1,round:1}), 'climax');
 assert.equal(pace({phase:'playing',paused:false,remaining:90,duration:180,boss:{active:false},roundSummoned:1,round:1}), 'recuperacao');
 assert.equal(pace({phase:'ended',paused:false,remaining:0,duration:180,boss:{active:false},roundSummoned:1,round:1}), 'resultado');
-console.log('LEVEL DESIGN RULES: 12/12 OK');
+console.log('LEVEL DESIGN RULES: 13/13 OK');
